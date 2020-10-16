@@ -6,11 +6,11 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <div>
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
+      <h1>Hi {userInfo.name} Welcome to Express Groomer!</h1>
       <div>
         <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
+          Do you need a groomer? No problem! We're able to help you find the
+          perfect groomer near you.
         </p>
         <p>
           <Link to="/profile-list">Profiles Example</Link>
