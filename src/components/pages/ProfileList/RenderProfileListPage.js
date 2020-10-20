@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const RenderProfileListPage = props => (
+
   <div>
     <p>
       <Link to="/">Home</Link>
