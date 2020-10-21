@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../common';
 import axiosWithAuth from '../../../api/axiosWithAuth';
+import AuthService from '@okta/okta-react/src/AuthService';
 
 function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
@@ -15,14 +16,12 @@ function RenderHomePage(props) {
         },
       })
       .then(res => {
-        console.log('RESPONSE:', res);
         setUserState({ ...res.data });
       })
       .catch(err => {
         console.log('Error:', err);
       });
   }, [authState, userInfo]);
-  console.log('USER STATE:', userState);
 
   return (
     <div>
