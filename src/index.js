@@ -12,7 +12,6 @@ import 'antd/dist/antd.less';
 
 import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
-import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
@@ -48,7 +47,6 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
