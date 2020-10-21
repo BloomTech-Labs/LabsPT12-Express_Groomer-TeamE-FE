@@ -10,6 +10,7 @@ import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
 function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
+  // user state needs to be placed in redux
   const [userState, setUserState] = useState();
 
   useEffect(() => {
@@ -31,18 +32,19 @@ function RenderHomePage(props) {
 
   return (
     <div>
-      <h1>Hi {userInfo.name} Welcome to Express Groomer!</h1>
-
+      {/* Falsy statement checking to see if the user has a role assigned if not they're directed to the Onboarding Form to fill out information needed for their account */}
       {userState === undefined ? (
         <h1>State Loading...</h1>
       ) : userState.role ? null : (
         <OnBoardingForm />
       )}
+      {/* If the user role is a client then they'll be directed to the client dashboard */}
       {userState === undefined ? (
         <h1>State Loading...</h1>
       ) : userState.role === 'client' ? (
         <ClientDashboard />
       ) : null}
+      {/* If the user role is a groomer then they'll be directed to the groomer dashboard */}
       {userState === undefined ? (
         <h1>State Loading...</h1>
       ) : userState.role === 'groomer' ? (
