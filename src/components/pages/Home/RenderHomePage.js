@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '../../common';
 import axiosWithAuth from '../../../api/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
 // components
-import OnBoardingForm from '../userOnBoarding/userOnBoardingForm';
 import ClientDashboard from '../ClientDashboard/ClientDashboard';
 import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
@@ -12,6 +10,8 @@ function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
   // user state needs to be placed in redux
   const [userState, setUserState] = useState();
+
+  let history = useHistory();
 
   useEffect(() => {
     axiosWithAuth()
@@ -36,7 +36,7 @@ function RenderHomePage(props) {
       {userState === undefined ? (
         <h1>State Loading...</h1>
       ) : userState.role ? null : (
-        <OnBoardingForm />
+        history.push('/onboarding')
       )}
       {/* If the user role is a client then they'll be directed to the client dashboard */}
       {userState === undefined ? (

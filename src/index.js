@@ -15,6 +15,7 @@ import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 
 ReactDOM.render(
   <Router>
@@ -49,6 +50,7 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
+        <SecureRoute path="/onboarding" component={OnBoardingContainer} />
       </Switch>
     </Security>
   );
