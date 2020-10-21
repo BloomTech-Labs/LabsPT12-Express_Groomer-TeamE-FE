@@ -1,6 +1,7 @@
 import React from 'react';
+import { useOktaAuth } from '@okta/okta-react';
 
-const ProfileList = () => {
+const GroomerProfile = () => {
   const { authState } = useOktaAuth();
 
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../common';
+import GroomerProfile from '../ProfileList/GroomerProfile';
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
@@ -28,6 +29,7 @@ function RenderHomePage(props) {
           />
         </p>
       </div>
+      <GroomerProfile/>
     </div>
   );
 }
