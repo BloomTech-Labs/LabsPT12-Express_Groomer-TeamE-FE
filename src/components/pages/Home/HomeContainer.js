@@ -18,13 +18,16 @@ function HomeContainer({ LoadingComponent }) {
         // if user is authenticated we can use the authService to snag some user info.
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
         if (isSubscribed) {
+          console.log(info.sub);
           setUserInfo(info);
+          //userInfo.sub && console.log(userInfo.sub)
         }
       })
       .catch(err => {
         isSubscribed = false;
         return setUserInfo(null);
       });
+
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
@@ -34,7 +37,11 @@ function HomeContainer({ LoadingComponent }) {
         <LoadingComponent message="Fetching user profile..." />
       )}
       {authState.isAuthenticated && userInfo && (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
+        <RenderHomePage
+          authState={authState}
+          userInfo={userInfo}
+          authService={authService}
+        />
       )}
     </>
   );

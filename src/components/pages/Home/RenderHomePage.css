@@ -1,0 +1,36 @@
+.topBox{
+    border: solid lightblue;
+    padding: 1%;
+    background-color: lightblue;
+}
+
+.bottomBox{
+    border: solid lightblue;
+    background-color: lightblue;
+    padding: 1%;
+    bottom: 0;
+    position: fixed;
+    width: 1000vh;
+}
+
+.links{
+    padding: 0;
+    margin: 0;
+    float: left; 
+    display:inline; 
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.description{
+    display: flex;
+    justify-content: center;
+}
