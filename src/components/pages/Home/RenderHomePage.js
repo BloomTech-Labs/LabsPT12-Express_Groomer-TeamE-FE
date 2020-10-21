@@ -32,27 +32,7 @@ function RenderHomePage(props) {
   return (
     <div>
       <h1>Hi {userInfo.name} Welcome to Express Groomer!</h1>
-      {/* <div>
-        <p>
-          Do you need a groomer? No problem! We're able to help you find the
-          perfect groomer near you.
-        </p>
-        <p>
-          <Link to="/profile-list">Profiles Example</Link>
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
-        <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
-        </p>
-      </div> */}
+
       {userState === undefined ? (
         <h1>State Loading...</h1>
       ) : userState.role ? null : (
