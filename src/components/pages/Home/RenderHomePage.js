@@ -1,34 +1,56 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '../../common';
+import React, { useState, useEffect } from 'react';
+import axiosWithAuth from '../../../api/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+
+// components
+import ClientDashboard from '../ClientDashboard/ClientDashboard';
+import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
 
 function RenderHomePage(props) {
-  const { userInfo, authService } = props;
+  const { userInfo, authService, authState } = props;
+  // user state needs to be placed in redux
+  const [userState, setUserState] = useState();
+
+  let history = useHistory();
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`profiles/${userInfo.sub}`, {
+        headers: {
+          Authorization: `Bearer ${authState.idToken}`,
+        },
+      })
+      .then(res => {
+        setUserState({ ...res.data });
+      })
+      .catch(err => {
+        console.log('Error:', err);
+      });
+  }, [authState, userInfo]);
+
+  console.log('User State', userState);
+
   return (
     <div>
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <div>
-        <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
-        </p>
-        <p>
-          <Link to="/profile-list">Profiles Example</Link>
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
-        <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
-        </p>
-      </div>
+      {/* Falsy statement checking to see if the user has a role assigned if not they're directed to the Onboarding Form to fill out information needed for their account */}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role ? null : (
+        history.push('/onboarding')
+      )}
+      {/* If the user role is a client then they'll be directed to the client dashboard */}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role === 'client' ? (
+        <ClientDashboard />
+      ) : null}
+      {/* If the user role is a groomer then they'll be directed to the groomer dashboard */}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role === 'groomer' ? (
+        <GroomerDashboard />
+      ) : null}
     </div>
   );
 }
