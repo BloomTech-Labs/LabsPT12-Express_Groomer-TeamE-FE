@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../common';
 import axiosWithAuth from '../../../api/axiosWithAuth';
 
+// components
+import OnBoardingForm from '../userOnBoarding/userOnBoardingForm';
+import ClientDashboard from '../ClientDashboard/ClientDashboard';
+import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
+
 function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
   const [userState, setUserState] = useState();
@@ -15,19 +20,19 @@ function RenderHomePage(props) {
         },
       })
       .then(res => {
-        console.log('RESPONSE:', res);
         setUserState({ ...res.data });
       })
       .catch(err => {
         console.log('Error:', err);
       });
   }, [authState, userInfo]);
-  console.log('USER STATE:', userState);
+
+  console.log('User State', userState);
 
   return (
     <div>
       <h1>Hi {userInfo.name} Welcome to Express Groomer!</h1>
-      <div>
+      {/* <div>
         <p>
           Do you need a groomer? No problem! We're able to help you find the
           perfect groomer near you.
@@ -47,7 +52,22 @@ function RenderHomePage(props) {
             buttonText="Logout"
           />
         </p>
-      </div>
+      </div> */}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role ? null : (
+        <OnBoardingForm />
+      )}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role === 'client' ? (
+        <ClientDashboard />
+      ) : null}
+      {userState === undefined ? (
+        <h1>State Loading...</h1>
+      ) : userState.role === 'groomer' ? (
+        <GroomerDashboard />
+      ) : null}
     </div>
   );
 }
