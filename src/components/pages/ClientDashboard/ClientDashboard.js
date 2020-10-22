@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import './ClientDashboard.css';
 
 // IconCard
 import IconCard from '../../IconCards/IconCard';
@@ -13,13 +15,28 @@ import pawprint from '../../../assets/pawprint.png';
 const icons = [userIcon, email, search, appointment, pawprint];
 
 const ClientDashboard = () => {
+  let history = useHistory();
+  var ind = 0;
+
+  const handleClick = id => {
+    if (id === 5) {
+      history.push('/PetPortal');
+    }
+  };
+
   return (
-    <>
-      <h1>Client Dashboard</h1>
-      {icons.map(icon => {
-        return <IconCard icon={icon} />;
-      })}
-    </>
+    <div className="clientDashContainer">
+      <div className="clientHeader">
+        <h1>Client Dashboard</h1>
+      </div>
+      <div className="cardContainer">
+        {icons.map(icon => {
+          return (
+            <IconCard id={(ind += 1)} handleClick={handleClick} icon={icon} />
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

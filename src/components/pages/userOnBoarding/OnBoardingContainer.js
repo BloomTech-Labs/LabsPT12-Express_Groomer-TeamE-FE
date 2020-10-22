@@ -17,7 +17,6 @@ const OnBoardingContainer = () => {
   };
 
   const onSubmit = () => {
-    window.localStorage.setItem('role', role.role);
     if (role.role === 'client') {
       history.push('/onboardingClient');
     } else {

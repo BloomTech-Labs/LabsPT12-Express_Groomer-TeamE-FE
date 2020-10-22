@@ -3,9 +3,10 @@
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  height: 10rem;
-  width: 10rem;
+  height: 13rem;
+  width: 13rem;
   transition: all 0.1s ease-in-out;
+  margin: 2rem 0rem 0rem 5rem;
 }
 .iconCard:hover {
   cursor: pointer;

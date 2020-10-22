@@ -17,6 +17,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
+import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
 
 ReactDOM.render(
   <Router>
@@ -56,6 +57,7 @@ function App() {
           path="/onboardingClient"
           component={ClientOnBoardingForm}
         />
+        <SecureRoute path="/PetPortal" component={ManagePetContainer} />
       </Switch>
     </Security>
   );

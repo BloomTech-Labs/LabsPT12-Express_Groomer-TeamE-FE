@@ -1,0 +1,52 @@
+.PetManagementHeader {
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  width: 15rem;
+}
+.darkAdd {
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 1.5rem;
+  left: 1.75rem;
+  width: 3rem;
+}
+.darkAdd:hover {
+  cursor: pointer;
+  opacity: 0;
+}
+.lightAdd {
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 1.5rem;
+  right: 1.25rem;
+  width: 3rem;
+  opacity: 0;
+}
+.lightAdd:hover {
+  cursor: pointer;
+  opacity: 10;
+}
+.petBtnContainer {
+  display: flex;
+  justify-content: center;
+  transition: all 0.1s ease-in-out;
+}
+.petBtnContainer:hover {
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
+/* .petBtnContainer2 {
+  display: flex;
+  justify-content: center;
+  transition: all 0.1s ease-in-out;
+}
+.petBtnContainer2:hover {
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+} */
