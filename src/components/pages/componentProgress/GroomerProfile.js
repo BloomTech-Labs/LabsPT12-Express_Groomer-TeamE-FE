@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useOktaAuth } from '@okta/okta-react';
+import axiosWithAuth from '../../../api/axiosWithAuth';
 // Styling
 import {EditOutlined} from '@ant-design/icons';
 import { Avatar } from 'antd';
@@ -10,16 +11,22 @@ const GroomerProfile = () => {
   const { authState } = useOktaAuth();
   const [groomerData, setGroomerData] = useState([])
 
-// // axios call to get groomer data
-//   useEffect(() =>{
-//     axios.get('http://localhost:8000/profile')
-//     .then(response =>{
-//       setGroomerData(response.data)
-//     })
-//     .catch(error =>{
-//       console.error(error)
-//     })
-//   },[])
+// axios call to get groomer data
+  useEffect(() =>{
+    axiosWithAuth()
+    axios.get('http://localhost:8000/profiles/00ulthapbErVUwVJy4x6', {
+      headers: {
+          Authorization: `Bearer ${authState.idToken}`,
+        },
+    })
+    .then(response =>{
+      console.log(response)
+      setGroomerData(response.data)
+    })
+    .catch(error =>{
+      console.error(error)
+    })
+  },[authState])
 
   return (
     <div className="groomerProfileContainer">
