@@ -24,7 +24,7 @@ const PopUpFormContainer = styled.div`
     top: 25%;  
     bottom: 25%;  
     margin: auto;  
-    border-radius: 20px;  
+    border-radius: 10px;  
     background: white;
   }
 `;
@@ -37,7 +37,10 @@ const GroomerEditForm = (props) => {
   return (
       <PopUpFormContainer className = "popUp-form-container">
         <div className="inner-popUp">
-            <h1>Edit Your Profile</h1>
+            <form>
+                <h1>Edit Your Profile</h1>
+                <button>Make Changes</button>
+            </form>
         </div>
       </PopUpFormContainer>
   );
