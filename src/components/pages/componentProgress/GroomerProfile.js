@@ -60,6 +60,7 @@ li{
 const GroomerProfile = () => {
   const { authState } = useOktaAuth();
   const [groomerData, setGroomerData] = useState({})
+  const [showPopUp, setShowPopUp] = useState(false)
 
 // axios call to get groomer data
   useEffect(() =>{
@@ -79,7 +80,11 @@ const GroomerProfile = () => {
   },[authState])
 
   // Functions 
-  
+  function handleClick(e){
+    e.preventDefault();
+    console.log('clicked')
+    setShowPopUp(true)
+  }
 
   return (
     <ProfileContainer className="groomerProfileContainer">
@@ -98,9 +103,11 @@ const GroomerProfile = () => {
       />
       <div className ="section-header">
         <h2 className ="groomer-business-name">Groomer's Business Name</h2>
-        <EditOutlined 
+        <EditOutlined
+        onClick ={handleClick} 
         style={{ color: 'black', fontSize:'25px' }}
         />
+        {showPopUp ? <GroomerEditForm/> : null }
       </div>
       <GroomerInfo className='information'>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut efficitur sapien a elit iaculis faucibus. Donec molestie, lacus et consequat luctus, odio mi sagittis lacus, vitae blandit nibh libero quis justo. Sed ac pellentesque augue, vitae vestibulum quam. Pellentesque at laoreet ligula. Nunc aliquet lacus urna, vitae eleifend risus venenatis sit amet. Donec pellentesque mollis tortor sed tincidunt. Vestibulum fermentum egestas quam, quis posuere nisl pretium ut. Praesent suscipit porttitor erat. Suspendiss</p>
