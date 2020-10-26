@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   height: 13rem;
   width: 13rem;
   transition: all 0.1s ease-in-out;
