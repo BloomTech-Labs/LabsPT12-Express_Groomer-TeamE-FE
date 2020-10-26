@@ -30,6 +30,7 @@ const PopUpFormContainer = styled.div`
 `;
 
 const GroomerEditForm = (props) => {
+    console.log(props)
 
   useEffect(() =>{
   },[])
@@ -39,7 +40,47 @@ const GroomerEditForm = (props) => {
         <div className="inner-popUp">
             <form>
                 <h1>Edit Your Profile</h1>
-                <button>Make Changes</button>
+                <label htmlFor ="businessName">Business Name: </label>
+                <input
+                    name = "businessName"
+                    type = "textarea"
+                    value ={props.groomerData.name}
+                />
+                <label htmlFor ="phoneNumber">Phone Number: </label>
+                <input
+                    name = "phoneNumber"
+                    type = "textarea"
+                    value = '999-999-999'
+                />
+                <label htmlFor ="email">Phone Number: </label>
+                <input
+                    name = "email"
+                    type = "textarea"
+                    value = {props.groomerData.email}
+                />
+                <label htmlFor ="operationHours">Phone Number: </label>
+                <input
+                    name = "operationHours"
+                    type = "textarea"
+                    value = 'Edit this'
+                />
+                <label htmlFor ="address">Phone Number: </label>
+                <input
+                    name = "address"
+                    type = "textarea"
+                    value = {props.groomerData.address}
+                />
+                <label htmlFor ="bio">Phone Number: </label>
+                <textarea
+                    name = "bio"
+                    type = "textarea"
+                    value = "itur sapien a elit iaculis faucibus. Donec molestie, lacus et consequat luctus, odio mi sagittis lacus, vitae blandit nibh libero quis justo. Sed ac pellentesque augue, vitae vestibulum quam. Pellentesque at laoreet ligula. Nunc aliquet lacus urna, vitae eleifend risus venenatis sit amet. Donec pellentesque mollis tortor sed tincidunt. Vestibulum fermentum egestas quam, quis posuere nisl pretium ut. Praesent suscipit porttitor erat. Suspendiss"
+                />
+
+                <input 
+                type ="submit"
+                value ="Submit"
+                />
             </form>
         </div>
       </PopUpFormContainer>
