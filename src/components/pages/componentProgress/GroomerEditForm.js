@@ -19,21 +19,36 @@ const PopUpFormContainer = styled.div`
 
   .inner-popUp{
     position: absolute;  
-    left: 25%;  
-    right: 25%;  
-    top: 25%;  
-    bottom: 25%;  
+    left: 15%;  
+    right: 15%;  
+    top: 15%;  
+    bottom: 15%;  
     margin: auto;  
     border-radius: 10px;  
     background: white;
+  }
+
+  label{
+      font-size:15px;
+      font-weight:bold;
+      display:inline;
+  }
+  input{
+      width:50%;
+      margin: 7px 0;
+  }
+
+  form{
+      margin: 0 auto;
   }
 `;
 
 const GroomerEditForm = (props) => {
     console.log(props)
 
-  useEffect(() =>{
-  },[])
+    function handleClose(){
+        props.setShowPopUp(false)
+    };
 
   return (
       <PopUpFormContainer className = "popUp-form-container">
@@ -45,43 +60,50 @@ const GroomerEditForm = (props) => {
                     name = "businessName"
                     type = "textarea"
                     value ={props.groomerData.name}
-                />
+                /><br/>
+
                 <label htmlFor ="phoneNumber">Phone Number: </label>
                 <input
                     name = "phoneNumber"
                     type = "textarea"
                     value = '999-999-999'
-                />
-                <label htmlFor ="email">Phone Number: </label>
+                /><br/>
+
+                <label htmlFor ="email">Email: </label>
                 <input
                     name = "email"
                     type = "textarea"
                     value = {props.groomerData.email}
-                />
-                <label htmlFor ="operationHours">Phone Number: </label>
+                /><br/>
+
+                <label htmlFor ="operationHours">Hours Of Operations: </label>
                 <input
                     name = "operationHours"
                     type = "textarea"
                     value = 'Edit this'
-                />
-                <label htmlFor ="address">Phone Number: </label>
+                /><br/>
+
+                <label htmlFor ="address">Address: </label>
                 <input
                     name = "address"
                     type = "textarea"
                     value = {props.groomerData.address}
-                />
-                <label htmlFor ="bio">Phone Number: </label>
+                /><br/>
+
+                <label htmlFor ="bio">Bio: </label>
                 <textarea
                     name = "bio"
                     type = "textarea"
+                    rows = "7"
+                    cols = "65"
+                    maxlength = '250'
                     value = "itur sapien a elit iaculis faucibus. Donec molestie, lacus et consequat luctus, odio mi sagittis lacus, vitae blandit nibh libero quis justo. Sed ac pellentesque augue, vitae vestibulum quam. Pellentesque at laoreet ligula. Nunc aliquet lacus urna, vitae eleifend risus venenatis sit amet. Donec pellentesque mollis tortor sed tincidunt. Vestibulum fermentum egestas quam, quis posuere nisl pretium ut. Praesent suscipit porttitor erat. Suspendiss"
                 />
-
-                <input 
-                type ="submit"
-                value ="Submit"
-                />
             </form>
+            <div className="form-buttons">
+                <button>Update</button>
+                <button onClick ={handleClose}>Close</button>
+            </div>
         </div>
       </PopUpFormContainer>
   );
