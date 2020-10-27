@@ -1,0 +1,46 @@
+.PetManagementHeader {
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  width: 15rem;
+}
+.darkAdd {
+  height: 3rem;
+  position: relative;
+}
+.darkAdd:hover {
+  cursor: pointer;
+  opacity: 0;
+}
+.lightAdd {
+  height: 3rem;
+  position: relative;
+  bottom: 3rem;
+  opacity: 0;
+}
+.lightAdd:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.petBtnContainer {
+  position: relative;
+  width: 4%;
+  right: 9.4rem;
+  top: 9rem;
+  height: 3rem;
+  transition: all 0.1s ease-in-out;
+}
+.petBtnContainer:hover {
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
+.petCardContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
