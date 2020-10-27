@@ -18,8 +18,6 @@ function RenderHomePage(props) {
 
   return (
     <div>
-      {/* Falsy statement checking to see if the user has a role assigned if not they're directed to the Onboarding Form to fill out information needed for their account */}
-
       {props.loggedInUserData === undefined ? (
         <h1>State Loading...</h1>
       ) : props.loggedInUserData.role === 'new' ? (
