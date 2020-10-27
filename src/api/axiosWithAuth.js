@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const axiosWithAuth = () => {
-  const authState = localStorage.getItem('okta-token-storage');
+const axiosWithAuth = authState => {
   return axios.create({
     baseURL: 'http://localhost:8000/',
     headers: {

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { setHandleRole } from '../../../state/actions';
 
-const OnBoardingContainer = () => {
+const OnBoardingContainer = props => {
   let history = useHistory();
 
   const [role, setRole] = useState({
@@ -17,14 +19,13 @@ const OnBoardingContainer = () => {
   };
 
   const onSubmit = () => {
+    props.setHandleRole(role.role);
     if (role.role === 'client') {
       history.push('/onboardingClient');
     } else {
       history.push('/onboardingGroomer');
     }
   };
-
-  console.log(role);
 
   return (
     <div>
@@ -53,4 +54,10 @@ const OnBoardingContainer = () => {
   );
 };
 
-export default OnBoardingContainer;
+const mapStateToProps = state => {
+  return {
+    handle_role: state.handle_role,
+  };
+};
+
+export default connect(mapStateToProps, { setHandleRole })(OnBoardingContainer);
