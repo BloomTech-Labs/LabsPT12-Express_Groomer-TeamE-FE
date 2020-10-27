@@ -43,7 +43,6 @@ export const reducer = (state = initialState, action) => {
         isFetching: false,
       };
     case HANDLE_ONBOARD_ROLE:
-      console.log('REDUCER:', action.payload);
       return {
         ...state,
         handle_role: action.payload,

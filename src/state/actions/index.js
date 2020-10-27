@@ -34,14 +34,14 @@ export const setHandleRole = role => dispatch => {
 };
 
 export const updateUserRole = (updatedUserProfile, authState) => dispatch => {
-  console.log('TEST', authState);
   axiosWithAuth(authState)
     .put('/profiles', updatedUserProfile)
     .then(res => {
+      // replace
       console.log('RES IN ACTIONS:', res);
     })
     .catch(err => {
+      // replace
       console.log('ERROR IN ACTION:', err);
     });
-  console.log('TEST');
 };
