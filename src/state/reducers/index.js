@@ -2,9 +2,9 @@ import {
   CLIENT_FETCH_START,
   CLIENT_FETCH_SUCCESS,
   CLIENT_FETCH_FAILURE,
-  FETCH_USER_INFO,
-  FETCH_AUTH_STATE,
   HANDLE_ONBOARD_ROLE,
+  UPDATE_USER_ROLE,
+  SET_AUTH_INFO,
 } from '../actions';
 
 export const initialState = {
@@ -18,6 +18,12 @@ export const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_AUTH_INFO:
+      return {
+        ...state,
+        userInfo: action.payload[0],
+        authState: action.payload[1],
+      };
     case CLIENT_FETCH_START:
       return {
         ...state,
@@ -36,22 +42,13 @@ export const reducer = (state = initialState, action) => {
         Error: action.payload,
         isFetching: false,
       };
-    case FETCH_AUTH_STATE:
-      return {
-        ...state,
-        authState: action.payload,
-      };
-    case FETCH_USER_INFO:
-      return {
-        ...state,
-        userInfo: action.payload,
-      };
     case HANDLE_ONBOARD_ROLE:
       console.log('REDUCER:', action.payload);
       return {
         ...state,
         handle_role: action.payload,
       };
+    case UPDATE_USER_ROLE:
 
     default:
       return state;

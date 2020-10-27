@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { fetchLoggedInUser } from '../../../state/actions/index';
-import { reducer, initialState } from '../../../state/reducers/index';
 import { connect } from 'react-redux';
 
 // components
@@ -10,16 +9,10 @@ import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
 function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
-  const [state, dispatch] = useReducer(reducer, initialState);
 
   let history = useHistory();
 
   useEffect(() => {
-    // User Info doesn't get set because of the HomeContaineer condition to reder
-    // This page. So, I'm setting a dispatch to update state with the user info needed
-    // to run this fetch call.
-    dispatch({ type: 'FETCH_USER_INFO', payload: userInfo });
-    dispatch({ type: 'FETCH_AUTH_STATE', payload: authState });
     props.fetchLoggedInUser(userInfo, authState);
   }, [authState, userInfo]);
 

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setHandleRole } from '../../../state/actions';
+import { setHandleRole, updateUserRole } from '../../../state/actions';
 
 const OnBoardingContainer = props => {
   let history = useHistory();
+  console.log('USER DATA 2', props.loggedInUserData);
 
   const [role, setRole] = useState({
     role: '',
@@ -18,14 +19,27 @@ const OnBoardingContainer = props => {
     setRole(formData);
   };
 
-  const onSubmit = () => {
+  const onSubmit = e => {
+    e.preventDefault();
+    const updatedUserProfile = {
+      ...props.loggedInUserData,
+      role: role.role,
+    };
     props.setHandleRole(role.role);
-    if (role.role === 'client') {
+    props.updateUserRole(updatedUserProfile, props.authState);
+
+    console.log('AFTER SUBMIT:', props.authState);
+
+    if (props.loggedInUserData.role === 'client') {
       history.push('/onboardingClient');
-    } else {
+    } else if (props.loggedInUserData.role === 'groomer') {
       history.push('/onboardingGroomer');
+    } else {
+      history.push('/');
     }
   };
+
+  console.log('USER DATA:', props);
 
   return (
     <div>
@@ -57,7 +71,11 @@ const OnBoardingContainer = props => {
 const mapStateToProps = state => {
   return {
     handle_role: state.handle_role,
+    loggedInUserData: state.loggedInUserData,
+    authState: state.authState,
   };
 };
 
-export default connect(mapStateToProps, { setHandleRole })(OnBoardingContainer);
+export default connect(mapStateToProps, { setHandleRole, updateUserRole })(
+  OnBoardingContainer
+);
