@@ -10,7 +10,7 @@ export const CLIENT_FETCH_SUCCESS = 'CLIENT_FETCH_SUCCESS';
 export const CLIENT_FETCH_FAILURE = 'CLIENT_FETCH_FAILURE';
 
 // sets role to state for OnBoarding in Container after put request
-export const HANDLE_ONBOARD_ROLE = 'HANDLE_ONBOARD_ROLE';
+export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
 
 export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: CLIENT_FETCH_START });
@@ -31,7 +31,7 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
     .put('/profiles', updatedUserProfile)
     .then(res => {
       // handles the response sets res to state
-      dispatch({ type: HANDLE_ONBOARD_ROLE, payload: res.data.profile });
+      dispatch({ type: HANDLE_UPDATE_USER, payload: res.data.profile });
     })
     .catch(err => {
       // replace
