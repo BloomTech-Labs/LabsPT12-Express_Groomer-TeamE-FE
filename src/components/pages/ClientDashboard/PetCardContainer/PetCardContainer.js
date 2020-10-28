@@ -45,14 +45,6 @@ const PetCardContainer = () => {
 
   useEffect(() => {
     setPets(dummyPets);
-    // axiosWithAuth()
-    // .get(`/:id/pets`)
-    // .then(res => {
-    //     console.log(res)
-    // })
-    // .catch(err => {
-    //     console.log(err)
-    // })
   }, []);
 
   return (

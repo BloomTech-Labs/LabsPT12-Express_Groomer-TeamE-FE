@@ -22,11 +22,7 @@ const OnBoardingContainer = props => {
   });
 
   useEffect(() => {
-    if (props.userInfo && props.authState) {
-      props.fetchLoggedInUser(props.userInfo, props.authState);
-    } else if (!props.userInfo && !props.authState) {
-      props.fetchLoggedInUser(UserInfo, AuthState);
-    }
+    props.fetchLoggedInUser(UserInfo, AuthState);
   }, []);
 
   let history = useHistory();
@@ -46,7 +42,7 @@ const OnBoardingContainer = props => {
         ...props.loggedInUserData,
         role: role.role,
       };
-      props.updateUser(updatedUserProfile, props.authState);
+      props.updateUser(updatedUserProfile, AuthState);
       if (role.role === 'client') {
         return history.push('/onboardingClient');
       } else if (role.role === 'groomer') {
@@ -57,7 +53,7 @@ const OnBoardingContainer = props => {
       ...props.loggedInUserData,
       role: 'new',
     };
-    props.updateUser(updatedUserProfile, props.authState);
+    props.updateUser(updatedUserProfile, AuthState);
     return history.push('/');
   };
 
@@ -92,8 +88,6 @@ const mapStateToProps = state => {
   return {
     handle_role: state.handle_role,
     loggedInUserData: state.loggedInUserData,
-    authState: state.authState,
-    userInfo: state.userInfo,
   };
 };
 
