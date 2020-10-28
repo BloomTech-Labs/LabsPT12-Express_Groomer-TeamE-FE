@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-  setHandleRole,
-  updateUserRole,
-  fetchLoggedInUser,
-} from '../../../state/actions';
+import { updateUser, fetchLoggedInUser } from '../../../state/actions';
 
 const OnBoardingContainer = props => {
   let windowAuthState = window.localStorage.getItem('okta-token-storage');
@@ -20,6 +16,7 @@ const OnBoardingContainer = props => {
   const UserInfo = {
     sub: AuthInfo.idToken.claims.sub,
   };
+
   const [role, setRole] = useState({
     role: 'new',
   });
@@ -49,8 +46,7 @@ const OnBoardingContainer = props => {
         ...props.loggedInUserData,
         role: role.role,
       };
-      props.setHandleRole(role.role);
-      props.updateUserRole(updatedUserProfile, props.authState);
+      props.updateUser(updatedUserProfile, props.authState);
       if (role.role === 'client') {
         return history.push('/onboardingClient');
       } else if (role.role === 'groomer') {
@@ -61,8 +57,7 @@ const OnBoardingContainer = props => {
       ...props.loggedInUserData,
       role: 'new',
     };
-    props.setHandleRole(role.role);
-    props.updateUserRole(updatedUserProfile, props.authState);
+    props.updateUser(updatedUserProfile, props.authState);
     return history.push('/');
   };
 
@@ -103,7 +98,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  setHandleRole,
-  updateUserRole,
+  updateUser,
   fetchLoggedInUser,
 })(OnBoardingContainer);

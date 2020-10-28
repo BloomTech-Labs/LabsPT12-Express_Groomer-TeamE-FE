@@ -3,7 +3,6 @@ import {
   CLIENT_FETCH_SUCCESS,
   CLIENT_FETCH_FAILURE,
   HANDLE_ONBOARD_ROLE,
-  UPDATE_USER_ROLE,
   SET_AUTH_INFO,
 } from '../actions';
 
@@ -13,7 +12,6 @@ export const initialState = {
   userInfo: '',
   authState: '',
   loggedInUserData: '',
-  handle_role: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -45,9 +43,8 @@ export const reducer = (state = initialState, action) => {
     case HANDLE_ONBOARD_ROLE:
       return {
         ...state,
-        handle_role: action.payload,
+        loggedInUserData: action.payload,
       };
-    case UPDATE_USER_ROLE:
 
     default:
       return state;

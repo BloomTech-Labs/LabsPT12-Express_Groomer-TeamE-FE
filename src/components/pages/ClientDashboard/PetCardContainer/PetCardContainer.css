@@ -1,8 +1,8 @@
-.PetManagementContainer {
+.petCardContainer {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  height: 100vh;
-  background: url('../../../../assets/Shelter.jpg') no-repeat center;
-  background-size: contain;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
 }
