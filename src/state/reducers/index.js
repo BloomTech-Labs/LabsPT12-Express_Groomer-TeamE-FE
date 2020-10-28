@@ -3,6 +3,7 @@ import {
   CLIENT_FETCH_SUCCESS,
   CLIENT_FETCH_FAILURE,
   HANDLE_UPDATE_USER,
+  UPDATE_USER_FAILURE,
   SET_AUTH_INFO,
 } from '../actions';
 
@@ -44,6 +45,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggedInUserData: action.payload,
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        Error: action.payload,
+        isFetching: false,
       };
 
     default:

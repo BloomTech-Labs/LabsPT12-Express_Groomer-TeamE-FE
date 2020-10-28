@@ -11,6 +11,7 @@ export const CLIENT_FETCH_FAILURE = 'CLIENT_FETCH_FAILURE';
 
 // sets role to state for OnBoarding in Container after put request
 export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: CLIENT_FETCH_START });
@@ -35,6 +36,6 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
     })
     .catch(err => {
       // replace
-      console.log('ERROR IN ACTION:', err);
+      dispatch({ type: UPDATE_USER_FAILURE, payload: err });
     });
 };
