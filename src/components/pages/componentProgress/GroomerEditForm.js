@@ -15,31 +15,52 @@ const PopUpFormContainer = styled.div`
   right: 0;  
   bottom: 0;  
   margin: auto;  
-  background-color: rgba(0,0,0, 0.5);  
+  background-color: rgba(0,0,0, 0.5); 
 
   .inner-popUp{
     position: absolute;  
-    left: 15%;  
-    right: 15%;  
+    left: 20%;  
+    right: 20%;  
     top: 15%;  
     bottom: 15%;  
     margin: auto;  
     border-radius: 10px;  
     background: white;
   }
+${'' /* 
+.form-container{
+    border:black solid 1px;
+    width:60%;
+    margin:1px auto;
+    border-radius:.5%
+    height:100vh;
+    ${'' /* background-color:rgb(16,183,239); */}
+} */}
+  form{
+      display:flex;
+      justify-content:space-evenly;
+  }
+  .right-side{
+      
+  }
+  .left-side{
+      width:55%;
+  }
 
   label{
       font-size:15px;
       font-weight:bold;
       display:inline;
-  }
+      margin:3px 0;
+    }
   input{
-      width:50%;
+      width:100%;
       margin: 7px 0;
-  }
+      border-radius:15px;
+      background:transparent;
+      border:none;
+      border-bottom: 1px solid black;
 
-  form{
-      margin: 0 auto;
   }
 `;
 
@@ -53,53 +74,66 @@ const GroomerEditForm = (props) => {
   return (
       <PopUpFormContainer className = "popUp-form-container">
         <div className="inner-popUp">
-            <form>
+            <div className="form-container">
                 <h1>Edit Your Profile</h1>
-                <label htmlFor ="businessName">Business Name: </label>
-                <input
-                    name = "businessName"
-                    type = "textarea"
-                    value ={props.groomerData.name}
-                /><br/>
+                <form>
+                    <div className="left-side">
+                        <label htmlFor ="businessName">Business Name: </label>
+                        <input
+                            name = "businessName"
+                            type = "textarea"
+                            value ={props.groomerData.name}
+                        />
 
-                <label htmlFor ="phoneNumber">Phone Number: </label>
-                <input
-                    name = "phoneNumber"
-                    type = "textarea"
-                    value = '999-999-999'
-                /><br/>
+                        <label htmlFor ="phoneNumber">Phone Number: </label>
+                        <input
+                            name = "phoneNumber"
+                            type = "textarea"
+                            value = '999-999-999'
+                        />
 
-                <label htmlFor ="email">Email: </label>
-                <input
-                    name = "email"
-                    type = "textarea"
-                    value = {props.groomerData.email}
-                /><br/>
+                        <label htmlFor ="email">Email: </label>
+                        <input
+                            name = "email"
+                            type = "textarea"
+                            value = {props.groomerData.email}
+                        />
 
-                <label htmlFor ="operationHours">Hours Of Operations: </label>
-                <input
-                    name = "operationHours"
-                    type = "textarea"
-                    value = 'Edit this'
-                /><br/>
-
-                <label htmlFor ="address">Address: </label>
-                <input
-                    name = "address"
-                    type = "textarea"
-                    value = {props.groomerData.address}
-                /><br/>
-
-                <label htmlFor ="bio">Bio: </label>
-                <textarea
-                    name = "bio"
-                    type = "textarea"
-                    rows = "7"
-                    cols = "65"
-                    maxlength = '250'
-                    value = "itur sapien a elit iaculis faucibus. Donec molestie, lacus et consequat luctus, odio mi sagittis lacus, vitae blandit nibh libero quis justo. Sed ac pellentesque augue, vitae vestibulum quam. Pellentesque at laoreet ligula. Nunc aliquet lacus urna, vitae eleifend risus venenatis sit amet. Donec pellentesque mollis tortor sed tincidunt. Vestibulum fermentum egestas quam, quis posuere nisl pretium ut. Praesent suscipit porttitor erat. Suspendiss"
-                />
-            </form>
+                        <label htmlFor ="address">Address: </label>
+                        <input
+                            name = "address"
+                            type = "textarea"
+                            value = {props.groomerData.address}
+                        />
+                        <label htmlFor ="City">City: </label>
+                        <input
+                            name = "city"
+                            type = "textarea"
+                            value = {props.groomerData.address}
+                        />
+                        <label htmlFor ="state">State: </label>
+                        <input
+                            name = "State"
+                            type = "textarea"
+                            value = {props.groomerData.address}
+                        />
+                        <label htmlFor ="zip">Zip: </label>
+                        <input
+                            name = "zip"
+                            type = "textarea"
+                            value = {props.groomerData.address}
+                        />
+                    </div>
+                    <div className="right-side">
+                        <label htmlFor ="operationHours">Hours Of Operations: </label>
+                        <input
+                            name = "operationHours"
+                            type = "textarea"
+                            value = 'Edit this'
+                        />
+                    </div>
+                </form>
+            </div>
             <div className="form-buttons">
                 <button>Update</button>
                 <button onClick ={handleClose}>Close</button>
