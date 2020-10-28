@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useReducer } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import './HomeContainer.css';
 
 import RenderHomePage from './RenderHomePage';
 
-function HomeContainer({ LoadingComponent }) {
+const HomeContainer = ({ LoadingComponent }) => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
-  // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function HomeContainer({ LoadingComponent }) {
   }, [memoAuthService]);
 
   return (
-    <>
+    <div className="AppContainer">
       {authState.isAuthenticated && !userInfo && (
         <LoadingComponent message="Fetching user profile..." />
       )}
@@ -40,8 +40,8 @@ function HomeContainer({ LoadingComponent }) {
           authState={authState}
         />
       )}
-    </>
+    </div>
   );
-}
+};
 
 export default HomeContainer;

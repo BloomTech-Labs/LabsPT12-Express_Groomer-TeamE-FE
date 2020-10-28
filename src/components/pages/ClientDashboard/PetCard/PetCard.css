@@ -1,0 +1,38 @@
+.petCard {
+  color: black;
+  border: 1px solid black;
+  width: 17.5rem;
+  height: 23.5rem;
+  background-color: white;
+}
+.imgContainer {
+  width: 100%;
+}
+.petImg {
+  max-width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+.txtContainer {
+  padding: 0.5rem;
+}
+p {
+  font-size: 10px;
+}
+.btmSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  width: 95%;
+  margin: auto;
+  transition: all 0.1s ease-in-out;
+}
+.petIcon {
+  width: 10%;
+}
+.petIcon:hover {
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}

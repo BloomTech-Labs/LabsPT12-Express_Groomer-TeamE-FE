@@ -1,5 +1,40 @@
-// import all of your actions into this file, and export them back out. 
-// This allows for the simplification of flow when importing actions into your components throughout your app.
-// Actions should be focused to a single purpose. 
-// You can have multiple action creators per file if it makes sense to the purpose those action creators are serving. 
-// Declare action TYPES at the top of the file
+import axiosWithAuth from '../../api/axiosWithAuth';
+
+// Initial authState & UserInfo in HomeContainer set to state
+// for future axios calls this is required per the server middleware
+export const SET_AUTH_INFO = 'SET_AUTH_INFO';
+
+// Get User by ID fetch status
+export const CLIENT_FETCH_START = 'CLIENT_FETCH_START';
+export const CLIENT_FETCH_SUCCESS = 'CLIENT_FETCH_SUCCESS';
+export const CLIENT_FETCH_FAILURE = 'CLIENT_FETCH_FAILURE';
+
+// sets role to state for OnBoarding in Container after put request
+export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+
+export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
+  dispatch({ type: CLIENT_FETCH_START });
+  axiosWithAuth(authState)
+    .get(`profiles/${userInfo.sub}`)
+    .then(res => {
+      dispatch({ type: CLIENT_FETCH_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: CLIENT_FETCH_FAILURE, payload: err });
+    });
+  dispatch({ type: SET_AUTH_INFO, payload: [userInfo, authState] });
+};
+
+export const updateUser = (updatedUserProfile, authState) => dispatch => {
+  axiosWithAuth(authState)
+    // send the updates to the server
+    .put('/profiles', updatedUserProfile)
+    .then(res => {
+      // handles the response sets res to state
+      dispatch({ type: HANDLE_UPDATE_USER, payload: res.data.profile });
+    })
+    .catch(err => {
+      // replace
+      console.log('ERROR IN ACTION:', err);
+    });
+};
