@@ -1,7 +1,7 @@
 import {
-  CLIENT_FETCH_START,
+  FETCH_START,
+  FETCH_FAILURE,
   CLIENT_FETCH_SUCCESS,
-  CLIENT_FETCH_FAILURE,
   HANDLE_UPDATE_USER,
   SET_AUTH_INFO,
 } from '../actions';
@@ -16,17 +16,17 @@ export const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_AUTH_INFO:
-      return {
-        ...state,
-        userInfo: action.payload[0],
-        authState: action.payload[1],
-      };
-    case CLIENT_FETCH_START:
+    case FETCH_START:
       return {
         ...state,
         error: '',
         isFetching: true,
+      };
+    case FETCH_FAILURE:
+      return {
+        ...state,
+        Error: action.payload,
+        isFetching: false,
       };
     case CLIENT_FETCH_SUCCESS:
       return {
@@ -34,11 +34,11 @@ export const reducer = (state = initialState, action) => {
         loggedInUserData: action.payload,
         isFetching: false,
       };
-    case CLIENT_FETCH_FAILURE:
+    case SET_AUTH_INFO:
       return {
         ...state,
-        Error: action.payload,
-        isFetching: false,
+        userInfo: action.payload[0],
+        authState: action.payload[1],
       };
     case HANDLE_UPDATE_USER:
       return {
