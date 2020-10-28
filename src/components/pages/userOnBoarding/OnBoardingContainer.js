@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import GroomerProfile from '../componentProgress/GroomerProfile';
 
-=======
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
->>>>>>> 9856b961907e02fbfc031b5306282bc50563f81e
 import { useHistory } from 'react-router-dom';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
 
-<<<<<<< HEAD
 
-const OnBoardingContainer = () => {
-  let history = useHistory();
-=======
+
+
 const OnBoardingContainer = props => {
   let windowAuthState = window.localStorage.getItem('okta-token-storage');
   let AuthInfo = JSON.parse(windowAuthState);
@@ -26,7 +21,7 @@ const OnBoardingContainer = props => {
   const UserInfo = {
     sub: AuthInfo.idToken.claims.sub,
   };
->>>>>>> 9856b961907e02fbfc031b5306282bc50563f81e
+
 
   const [role, setRole] = useState({
     role: 'new',

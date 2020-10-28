@@ -17,13 +17,10 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-<<<<<<< HEAD
-    "styled-components": "^5.2.0"
-=======
+    "styled-components": "^5.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
->>>>>>> 9856b961907e02fbfc031b5306282bc50563f81e
   },
   "scripts": {
     "start": "craco --max_old_space_size=4096 start",
