@@ -22,7 +22,6 @@ export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
     .catch(err => {
       dispatch({ type: FETCH_FAILURE, payload: err });
     });
-  dispatch({ type: SET_AUTH_INFO, payload: [userInfo, authState] });
 };
 
 export const updateUser = (updatedUserProfile, authState) => dispatch => {
