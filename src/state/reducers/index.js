@@ -2,8 +2,8 @@ import {
   CLIENT_FETCH_START,
   CLIENT_FETCH_SUCCESS,
   CLIENT_FETCH_FAILURE,
-  HANDLE_ONBOARD_ROLE,
-  UPDATE_USER_ROLE,
+  HANDLE_UPDATE_USER,
+  UPDATE_USER_FAILURE,
   SET_AUTH_INFO,
 } from '../actions';
 
@@ -13,7 +13,6 @@ export const initialState = {
   userInfo: '',
   authState: '',
   loggedInUserData: '',
-  handle_role: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -42,13 +41,17 @@ export const reducer = (state = initialState, action) => {
         Error: action.payload,
         isFetching: false,
       };
-    case HANDLE_ONBOARD_ROLE:
-      console.log('REDUCER:', action.payload);
+    case HANDLE_UPDATE_USER:
       return {
         ...state,
-        handle_role: action.payload,
+        loggedInUserData: action.payload,
       };
-    case UPDATE_USER_ROLE:
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        Error: action.payload,
+        isFetching: false,
+      };
 
     default:
       return state;

@@ -9,11 +9,9 @@ export const CLIENT_FETCH_START = 'CLIENT_FETCH_START';
 export const CLIENT_FETCH_SUCCESS = 'CLIENT_FETCH_SUCCESS';
 export const CLIENT_FETCH_FAILURE = 'CLIENT_FETCH_FAILURE';
 
-// sets role to state for OnBoarding in Container
-export const HANDLE_ONBOARD_ROLE = 'HANDLE_ONBOARD_ROLE';
-
-// updated user profile including new role
-export const UPDATE_USER_ROLE = 'UPDATE_USER_ROLE';
+// sets role to state for OnBoarding in Container after put request
+export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: CLIENT_FETCH_START });
@@ -28,20 +26,16 @@ export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: SET_AUTH_INFO, payload: [userInfo, authState] });
 };
 
-export const setHandleRole = role => dispatch => {
-  console.log('ACTION:', role);
-  dispatch({ type: HANDLE_ONBOARD_ROLE, payload: role });
-};
-
-export const updateUserRole = (updatedUserProfile, authState) => dispatch => {
-  console.log('TEST', authState);
+export const updateUser = (updatedUserProfile, authState) => dispatch => {
   axiosWithAuth(authState)
+    // send the updates to the server
     .put('/profiles', updatedUserProfile)
     .then(res => {
-      console.log('RES IN ACTIONS:', res);
+      // handles the response sets res to state
+      dispatch({ type: HANDLE_UPDATE_USER, payload: res.data.profile });
     })
     .catch(err => {
-      console.log('ERROR IN ACTION:', err);
+      // replace
+      dispatch({ type: UPDATE_USER_FAILURE, payload: err });
     });
-  console.log('TEST');
 };

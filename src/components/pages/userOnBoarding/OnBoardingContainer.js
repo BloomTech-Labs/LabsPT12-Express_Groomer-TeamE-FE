@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { setHandleRole, updateUserRole } from '../../../state/actions';
+import { updateUser, fetchLoggedInUser } from '../../../state/actions';
 
 const OnBoardingContainer = props => {
-  let history = useHistory();
-  console.log('USER DATA 2', props.loggedInUserData);
+  let windowAuthState = window.localStorage.getItem('okta-token-storage');
+  let AuthInfo = JSON.parse(windowAuthState);
+
+  const AuthState = {
+    accessToken: AuthInfo.accessToken.accessToken,
+    idToken: AuthInfo.idToken.idToken,
+  };
+
+  const UserInfo = {
+    sub: AuthInfo.idToken.claims.sub,
+  };
 
   const [role, setRole] = useState({
-    role: '',
+    role: 'new',
   });
+
+  useEffect(() => {
+    if (props.userInfo && props.authState) {
+      props.fetchLoggedInUser(props.userInfo, props.authState);
+    } else if (!props.userInfo && !props.authState) {
+      props.fetchLoggedInUser(UserInfo, AuthState);
+    }
+  }, []);
+
+  let history = useHistory();
 
   const handleChange = e => {
     const formData = {
@@ -21,25 +41,25 @@ const OnBoardingContainer = props => {
 
   const onSubmit = e => {
     e.preventDefault();
+    if (role.role === 'client' || 'groomer') {
+      const updatedUserProfile = {
+        ...props.loggedInUserData,
+        role: role.role,
+      };
+      props.updateUser(updatedUserProfile, props.authState);
+      if (role.role === 'client') {
+        return history.push('/onboardingClient');
+      } else if (role.role === 'groomer') {
+        return history.push('/onboardingGroomer');
+      }
+    }
     const updatedUserProfile = {
       ...props.loggedInUserData,
-      role: role.role,
+      role: 'new',
     };
-    props.setHandleRole(role.role);
-    props.updateUserRole(updatedUserProfile, props.authState);
-
-    console.log('AFTER SUBMIT:', props.authState);
-
-    if (props.loggedInUserData.role === 'client') {
-      history.push('/onboardingClient');
-    } else if (props.loggedInUserData.role === 'groomer') {
-      history.push('/onboardingGroomer');
-    } else {
-      history.push('/');
-    }
+    props.updateUser(updatedUserProfile, props.authState);
+    return history.push('/');
   };
-
-  console.log('USER DATA:', props);
 
   return (
     <div>
@@ -56,7 +76,7 @@ const OnBoardingContainer = props => {
               value={role.role}
               onChange={handleChange}
             >
-              <option value="none">Choose Account Type</option>
+              <option value="new">Choose Account Type</option>
               <option value="groomer">Groomer</option>
               <option value="client">Client</option>
             </select>
@@ -73,9 +93,11 @@ const mapStateToProps = state => {
     handle_role: state.handle_role,
     loggedInUserData: state.loggedInUserData,
     authState: state.authState,
+    userInfo: state.userInfo,
   };
 };
 
-export default connect(mapStateToProps, { setHandleRole, updateUserRole })(
-  OnBoardingContainer
-);
+export default connect(mapStateToProps, {
+  updateUser,
+  fetchLoggedInUser,
+})(OnBoardingContainer);
