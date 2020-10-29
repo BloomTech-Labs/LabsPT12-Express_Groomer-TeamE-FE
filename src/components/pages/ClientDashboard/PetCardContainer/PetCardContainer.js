@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useOktaAuth } from '@okta/okta-react';
 import {
   fetchLoggedInUser,
   getPetsByUserId,
@@ -10,20 +11,15 @@ import './PetCardContainer.css';
 import PetCard from '../PetCard/PetCard';
 
 const PetCardContainer = props => {
-  let windowAuthState = window.localStorage.getItem('okta-token-storage');
-  let AuthInfo = JSON.parse(windowAuthState);
+  const { authState, authService } = useOktaAuth();
+  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
-  const AuthState = {
-    accessToken: AuthInfo.accessToken.accessToken,
-    idToken: AuthInfo.idToken.idToken,
-  };
-
-  const UserInfo = {
-    sub: AuthInfo.idToken.claims.sub,
+  const User = {
+    id: AuthInfo.idToken.claims.sub,
   };
 
   useEffect(() => {
-    props.getPetsByUserId(UserInfo, AuthState);
+    props.getPetsByUserId(User, authState);
   }, []);
 
   return (

@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useOktaAuth } from '@okta/okta-react';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions/index';
 
 const ClientOnBoardingForm = props => {
+  const { authState, authService } = useOktaAuth();
+  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
+
   let history = useHistory();
 
-  let windowAuthState = window.localStorage.getItem('okta-token-storage');
-  let AuthInfo = JSON.parse(windowAuthState);
-
-  const AuthState = {
-    accessToken: AuthInfo.accessToken.accessToken,
-    idToken: AuthInfo.idToken.idToken,
-  };
-
-  const UserInfo = {
-    sub: AuthInfo.idToken.claims.sub,
+  const User = {
+    id: AuthInfo.idToken.claims.sub,
   };
 
   const [data, setData] = useState({
@@ -29,7 +25,7 @@ const ClientOnBoardingForm = props => {
   });
 
   useEffect(() => {
-    props.fetchLoggedInUser(UserInfo, AuthState);
+    props.fetchLoggedInUser(User, authState);
   }, []);
 
   const handleChange = e => {
@@ -48,7 +44,7 @@ const ClientOnBoardingForm = props => {
       bannerUrl: data.bannerUrl,
       address: data.address,
     };
-    props.updateUser(updatedClientProfile, AuthState);
+    props.updateUser(updatedClientProfile, authState);
     return history.push('/');
   };
 
