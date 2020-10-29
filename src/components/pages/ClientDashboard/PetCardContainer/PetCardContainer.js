@@ -1,63 +1,51 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+  fetchLoggedInUser,
+  getPetsByUserId,
+} from '../../../../state/actions/index';
 import './PetCardContainer.css';
-import axiosWithAuth from '../../../../api/axiosWithAuth';
-
-// Petimages
-import pet1 from '../../../../assets/dummyPhotos/pet1.jpg';
-import pet2 from '../../../../assets/dummyPhotos/pet2.jpg';
-import pet3 from '../../../../assets/dummyPhotos/pet3.jpg';
 
 //components
 import PetCard from '../PetCard/PetCard';
 
-const dummyPets = [
-  {
-    id: 1,
-    name: 'Fluffykins',
-    type: 'cat',
-    user_id: 'whh3298423ykdjsiy',
-    shots: true,
-    photo: pet1,
-    notes: 'luyikadfsg cute',
-  },
-  {
-    id: 2,
-    name: 'Fluffykins',
-    type: 'cat',
-    user_id: 'whh3298423ykdjsiy',
-    shots: false,
-    photo: pet2,
-    notes: 'luyikadfsg cute',
-  },
-  {
-    id: 3,
-    name: 'Fluffykins',
-    type: 'cat',
-    user_id: 'whh3298423ykdjsiy',
-    shots: true,
-    photo: pet3,
-    notes: 'luyikadfsg cute',
-  },
-];
+const PetCardContainer = props => {
+  let windowAuthState = window.localStorage.getItem('okta-token-storage');
+  let AuthInfo = JSON.parse(windowAuthState);
 
-const PetCardContainer = () => {
-  const [pets, setPets] = useState();
+  const AuthState = {
+    accessToken: AuthInfo.accessToken.accessToken,
+    idToken: AuthInfo.idToken.idToken,
+  };
+
+  const UserInfo = {
+    sub: AuthInfo.idToken.claims.sub,
+  };
 
   useEffect(() => {
-    setPets(dummyPets);
+    props.getPetsByUserId(UserInfo, AuthState);
   }, []);
 
   return (
     <div className="petCardContainer">
-      {pets ? (
-        pets.map(pet => {
-          return <PetCard pet={pet} />;
+      {props.loggedInUsersPets ? (
+        props.loggedInUsersPets.map(pet => {
+          return <PetCard key={pet.id} pet={pet} />;
         })
       ) : (
-        <p>Fetching Pets</p>
+        <p>Please, Add a pet!</p>
       )}
     </div>
   );
 };
 
-export default PetCardContainer;
+const mapStateToProps = state => {
+  return {
+    fetchLoggedInUser: state.fetchLoggedInUser,
+    loggedInUsersPets: state.loggedInUsersPets,
+  };
+};
+
+export default connect(mapStateToProps, { fetchLoggedInUser, getPetsByUserId })(
+  PetCardContainer
+);

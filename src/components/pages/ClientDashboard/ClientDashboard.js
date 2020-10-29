@@ -16,7 +16,8 @@ const icons = [userIcon, email, search, appointment, pawprint];
 
 const ClientDashboard = () => {
   let history = useHistory();
-  var ind = 0;
+  let key = 0;
+  let id = 0;
 
   const handleClick = id => {
     if (id === 5) {
@@ -32,7 +33,12 @@ const ClientDashboard = () => {
       <div className="cardContainer">
         {icons.map(icon => {
           return (
-            <IconCard id={(ind += 1)} handleClick={handleClick} icon={icon} />
+            <IconCard
+              key={(key += 1)}
+              id={(id += 1)}
+              handleClick={handleClick}
+              icon={icon}
+            />
           );
         })}
       </div>

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
@@ -56,7 +55,6 @@ const OnBoardingContainer = props => {
     props.updateUser(updatedUserProfile, AuthState);
     return history.push('/');
   };
-
   return (
     <div>
       <h1>Welcome To Express Groomer!</h1>
@@ -64,19 +62,17 @@ const OnBoardingContainer = props => {
 
       <div>
         <form onSubmit={onSubmit}>
-          <label>
-            <select
-              placeholder="role"
-              type="text"
-              name="role"
-              value={role.role}
-              onChange={handleChange}
-            >
-              <option value="new">Choose Account Type</option>
-              <option value="groomer">Groomer</option>
-              <option value="client">Client</option>
-            </select>
-          </label>
+          <select
+            placeholder="role"
+            type="text"
+            name="role"
+            value={role.role}
+            onChange={handleChange}
+          >
+            <option value="new">Choose Account Type</option>
+            <option value="groomer">Groomer</option>
+            <option value="client">Client</option>
+          </select>
         </form>
         <button onClick={onSubmit}>Continue</button>
       </div>

@@ -18,6 +18,10 @@ const ManagePetContainer = () => {
     setIsAdding(!isAdding);
   };
 
+  const handleUpdatePet = e => {
+    setIsUpdating(!isUpdating);
+  };
+
   return (
     <div className="PetManagementContainer">
       <div className="PetManagementHeader">
@@ -36,7 +40,11 @@ const ManagePetContainer = () => {
           />
         </div>
       </div>
-      {isAdding === false ? <PetCardContainer /> : <AddPetForm />}
+      {isAdding === false ? (
+        <PetCardContainer />
+      ) : (
+        <AddPetForm isAdding={isAdding} setIsAdding={setIsAdding} />
+      )}
     </div>
   );
 };

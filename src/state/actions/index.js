@@ -1,28 +1,31 @@
 import axiosWithAuth from '../../api/axiosWithAuth';
 
-// Initial authState & UserInfo in HomeContainer set to state
-// for future axios calls this is required per the server middleware
-export const SET_AUTH_INFO = 'SET_AUTH_INFO';
-
-// Get User by ID fetch status
+// API fetch statuses
 export const FETCH_START = 'FETCH_START';
 export const FETCH_FAILURE = 'FETCH_FAILURE';
-export const CLIENT_FETCH_SUCCESS = 'CLIENT_FETCH_SUCCESS';
 
-// sets role to state for OnBoarding in Container after put request
+// loggedInUserData in state: grabs data of logged in user
+export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
+
+// loggedInUserData in state: updates the logged in user data.
 export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+
+// LoggedInUsersPets: gets all the pets owned by the loggedInUser
+export const FETCH_USER_PETS = 'FETCH_USER_PETS';
+
+// AddPet: sends a post requests and adds pet to the user account
+export const ADD_PET_SUCCESS = 'ADD_PET_SUCCESS';
 
 export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
     .get(`profiles/${userInfo.sub}`)
     .then(res => {
-      dispatch({ type: CLIENT_FETCH_SUCCESS, payload: res.data });
+      dispatch({ type: USER_FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: FETCH_FAILURE, payload: err });
     });
-  dispatch({ type: SET_AUTH_INFO, payload: [userInfo, authState] });
 };
 
 export const updateUser = (updatedUserProfile, authState) => dispatch => {
@@ -39,3 +42,40 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
       dispatch({ type: FETCH_FAILURE, payload: err });
     });
 };
+
+// export const getPetsByUserId = (userInfo, authState) => dispatch => {
+//     dispatch({ type: FETCH_START });
+//     getPetsByUserId(authState, userInfo.sub)
+//     .then(res => {
+//         dispatch({ type: FETCH_USER_PETS, payload: res.data})
+//     })
+//     .catch(err => {
+//         dispatch({ type: FETCH_FAILURE, payload: err })
+//     })
+// }
+
+export const getPetsByUserId = (userInfo, authState) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .get(`/profiles/${userInfo.sub}/pets`)
+    .then(res => {
+      dispatch({ type: FETCH_USER_PETS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};
+
+export const addPet = (petData, authState) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .post('/pet/', petData)
+    .then(res => {
+      dispatch({ type: ADD_PET_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};
+
+// export const deletePet = ()
