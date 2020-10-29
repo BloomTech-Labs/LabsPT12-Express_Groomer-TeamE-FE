@@ -1,5 +1,10 @@
 import axios from 'axios';
+// import axiosWithAuth from './axiosWithAuth';
+// import { useOktaAuth } from '@okta/okta-react';
+// import AuthService from '@okta/okta-react/src/AuthService';
 
+// const { authState, authService } = useOktaAuth();
+// let userInfo = {}
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -8,30 +13,11 @@ const sleep = time =>
     setTimeout(resolve, time);
   });
 
-const getExampleData = () => {
-  return axios
-    .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
-    .then(response => response.data);
-};
-
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
   }
   return { Authorization: `Bearer ${authState.idToken}` };
-};
-
-const getDSData = (url, authState) => {
-  // here's another way you can compose together your API calls.
-  // Note the use of GetAuthHeader here is a little different than in the getProfileData call.
-  const headers = getAuthHeader(authState);
-  if (!url) {
-    throw new Error('No URL provided');
-  }
-  return axios
-    .get(url, { headers })
-    .then(res => JSON.parse(res.data))
-    .catch(err => err);
 };
 
 const apiAuthGet = authHeader => {
@@ -49,4 +35,24 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+// const getPetsByUserId = (userId) => {
+//     getUserInfo()
+//     return axiosWithAuth(authState).get(`/profiles/${userInfo.sub}/pets`)
+// }
+
+// const getUserInfo = () => {
+//   if (!userInfo){
+//     authService
+//      .getUser()
+//      .then(info => {
+//        if (info){
+//          userInfo = info
+//        }
+//      })
+//      .catch(err => {
+//        console.log(err)
+//      });
+//   }
+// }
+
+export { sleep, getProfileData };

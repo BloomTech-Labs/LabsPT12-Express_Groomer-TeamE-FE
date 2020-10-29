@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import GroomerProfile from '../componentProgress/GroomerProfile';
 
 import { useEffect } from 'react';
+=======
+import React, { useState, useEffect } from 'react';
+>>>>>>> e0b17e7800db8f2af5b5590c222fb9156717c9b7
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
@@ -28,11 +32,7 @@ const OnBoardingContainer = props => {
   });
 
   useEffect(() => {
-    if (props.userInfo && props.authState) {
-      props.fetchLoggedInUser(props.userInfo, props.authState);
-    } else if (!props.userInfo && !props.authState) {
-      props.fetchLoggedInUser(UserInfo, AuthState);
-    }
+    props.fetchLoggedInUser(UserInfo, AuthState);
   }, []);
 
   let history = useHistory();
@@ -52,7 +52,7 @@ const OnBoardingContainer = props => {
         ...props.loggedInUserData,
         role: role.role,
       };
-      props.updateUser(updatedUserProfile, props.authState);
+      props.updateUser(updatedUserProfile, AuthState);
       if (role.role === 'client') {
         return history.push('/onboardingClient');
       } else if (role.role === 'groomer') {
@@ -63,10 +63,9 @@ const OnBoardingContainer = props => {
       ...props.loggedInUserData,
       role: 'new',
     };
-    props.updateUser(updatedUserProfile, props.authState);
+    props.updateUser(updatedUserProfile, AuthState);
     return history.push('/');
   };
-
   return (
     <div>
       <h1>Welcome To Express Groomer!</h1>
@@ -76,19 +75,17 @@ const OnBoardingContainer = props => {
 
       <div>
         <form onSubmit={onSubmit}>
-          <label>
-            <select
-              placeholder="role"
-              type="text"
-              name="role"
-              value={role.role}
-              onChange={handleChange}
-            >
-              <option value="new">Choose Account Type</option>
-              <option value="groomer">Groomer</option>
-              <option value="client">Client</option>
-            </select>
-          </label>
+          <select
+            placeholder="role"
+            type="text"
+            name="role"
+            value={role.role}
+            onChange={handleChange}
+          >
+            <option value="new">Choose Account Type</option>
+            <option value="groomer">Groomer</option>
+            <option value="client">Client</option>
+          </select>
         </form>
         <button onClick={onSubmit}>Continue</button>
       </div>
@@ -100,8 +97,6 @@ const mapStateToProps = state => {
   return {
     handle_role: state.handle_role,
     loggedInUserData: state.loggedInUserData,
-    authState: state.authState,
-    userInfo: state.userInfo,
   };
 };
 
