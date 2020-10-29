@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addPet } from '../../../../state/actions/index';
 import { useHistory } from 'react-router-dom';
+import { useOktaAuth } from '@okta/okta-react';
 
 const AddPetForm = props => {
-  let windowAuthState = window.localStorage.getItem('okta-token-storage');
-  let AuthInfo = JSON.parse(windowAuthState);
+  const { authState, authService } = useOktaAuth();
+  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
-  const AuthState = {
-    accessToken: AuthInfo.accessToken.accessToken,
-    idToken: AuthInfo.idToken.idToken,
-  };
+  let history = useHistory();
 
-  const UserInfo = {
-    sub: AuthInfo.idToken.claims.sub,
+  const User = {
+    id: AuthInfo.idToken.claims.sub,
   };
 
   const [petState, setPetState] = useState({
@@ -21,10 +19,8 @@ const AddPetForm = props => {
     type: '',
     photo: '',
     notes: '',
-    user_id: UserInfo.sub,
+    user_id: User.id,
   });
-
-  let history = useHistory();
 
   const handleChange = e => {
     const newData = {
@@ -36,7 +32,7 @@ const AddPetForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.addPet(petState, AuthState);
+    props.addPet(petState, authState);
     history.push('/');
   };
 

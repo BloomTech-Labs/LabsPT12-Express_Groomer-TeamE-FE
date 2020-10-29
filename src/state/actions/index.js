@@ -9,18 +9,18 @@ export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 
 // loggedInUserData in state: updates the logged in user data.
 export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+
+// fetch success or failures
 export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
+export const ADD_PET_SUCCESS = 'ADD_PET_SUCCESS';
 
 // LoggedInUsersPets: gets all the pets owned by the loggedInUser
 export const FETCH_USER_PETS = 'FETCH_USER_PETS';
 
-// AddPet: sends a post requests and adds pet to the user account
-export const ADD_PET_SUCCESS = 'ADD_PET_SUCCESS';
-
-export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
+export const fetchLoggedInUser = (user, authState) => dispatch => {
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
-    .get(`profiles/${userInfo.sub}`)
+    .get(`profiles/${user.sub}`)
     .then(res => {
       dispatch({ type: USER_FETCH_SUCCESS, payload: res.data });
     })
@@ -44,9 +44,9 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
     });
 };
 
-// export const getPetsByUserId = (userInfo, authState) => dispatch => {
+// export const getPetsByUserId = (user, authState) => dispatch => {
 //     dispatch({ type: FETCH_START });
-//     getPetsByUserId(authState, userInfo.sub)
+//     getPetsByUserId(authState, user.id)
 //     .then(res => {
 //         dispatch({ type: FETCH_USER_PETS, payload: res.data})
 //     })
@@ -55,10 +55,10 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
 //     })
 // }
 
-export const getPetsByUserId = (userInfo, authState) => dispatch => {
+export const getPetsByUserId = (user, authState) => dispatch => {
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
-    .get(`/profiles/${userInfo.sub}/pets`)
+    .get(`/profiles/${user.id}/pets`)
     .then(res => {
       dispatch({ type: FETCH_USER_PETS, payload: res.data });
     })
