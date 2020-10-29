@@ -13,7 +13,7 @@ const PetCard = props => {
       <div className="imgContainer">
         <img className="petImg" src={props.pet.photo} />
       </div>
-      <div className="btmSection">
+      <div className="btnSection">
         {props.pet.shots === true ? (
           <img
             className="petIcon"
