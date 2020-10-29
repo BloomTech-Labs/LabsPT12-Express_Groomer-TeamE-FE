@@ -4,6 +4,9 @@
   width: 17.5rem;
   height: 23.5rem;
   background-color: white;
+  -webkit-box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.95);
+  box-shadow: 0px 0px 11px -3px rgba(0, 0, 0, 0.95);
+  border-radius: 1rem;
 }
 .imgContainer {
   width: 100%;
@@ -12,6 +15,8 @@
   max-width: 100%;
   height: 12rem;
   object-fit: cover;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
 }
 .txtContainer {
   padding: 0.5rem;
@@ -32,6 +37,7 @@ p {
   width: 10%;
 }
 .petIcon:hover {
+  cursor: pointer;
   transition-timing-function: ease-in;
   transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform: translateY(-3px);

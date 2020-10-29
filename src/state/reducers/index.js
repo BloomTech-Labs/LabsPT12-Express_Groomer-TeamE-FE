@@ -1,10 +1,10 @@
 import {
   FETCH_START,
   FETCH_FAILURE,
-  CLIENT_FETCH_SUCCESS,
+  USER_FETCH_SUCCESS,
   HANDLE_UPDATE_USER,
-  UPDATE_USER_FAILURE,
-  SET_AUTH_INFO,
+  FETCH_USER_PETS,
+  ADD_PET_SUCCESS,
 } from '../actions';
 
 export const initialState = {
@@ -13,6 +13,7 @@ export const initialState = {
   userInfo: '',
   authState: '',
   loggedInUserData: '',
+  loggedInUsersPets: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -29,28 +30,26 @@ export const reducer = (state = initialState, action) => {
         Error: action.payload,
         isFetching: false,
       };
-    case CLIENT_FETCH_SUCCESS:
+    case USER_FETCH_SUCCESS:
       return {
         ...state,
         loggedInUserData: action.payload,
         isFetching: false,
-      };
-    case SET_AUTH_INFO:
-      return {
-        ...state,
-        userInfo: action.payload[0],
-        authState: action.payload[1],
       };
     case HANDLE_UPDATE_USER:
       return {
         ...state,
         loggedInUserData: action.payload,
       };
-    case UPDATE_USER_FAILURE:
+    case FETCH_USER_PETS:
       return {
         ...state,
-        Error: action.payload,
-        isFetching: false,
+        loggedInUsersPets: action.payload,
+      };
+    case ADD_PET_SUCCESS:
+      return {
+        ...state,
+        loggedInUsersPets: action.payload,
       };
 
     default:

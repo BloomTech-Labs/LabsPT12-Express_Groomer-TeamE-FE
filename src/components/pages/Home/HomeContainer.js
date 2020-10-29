@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useReducer } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import './HomeContainer.css';
-
 import RenderHomePage from './RenderHomePage';
 
 const HomeContainer = ({ LoadingComponent }) => {
