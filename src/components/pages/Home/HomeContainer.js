@@ -3,6 +3,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import './HomeContainer.css';
 
 import RenderHomePage from './RenderHomePage';
+// import GroomerProfile from '../componentProgress/GroomerProfile';
 
 const HomeContainer = ({ LoadingComponent }) => {
   const { authState, authService } = useOktaAuth();
@@ -40,6 +41,7 @@ const HomeContainer = ({ LoadingComponent }) => {
           authState={authState}
         />
       )}
+      {/* <GroomerProfile/> */}
     </div>
   );
 };

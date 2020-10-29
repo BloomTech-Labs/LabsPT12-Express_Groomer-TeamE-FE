@@ -34,6 +34,8 @@ function RenderHomePage(props) {
           .role === 'groomer' ? (
         <GroomerDashboard />
       ) : null}
+
+
     </div>
   );
 }
