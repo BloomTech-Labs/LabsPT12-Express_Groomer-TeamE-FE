@@ -9,6 +9,7 @@ export const USER_FETCH_SUCCESS = 'USER_FETCH_SUCCESS';
 
 // loggedInUserData in state: updates the logged in user data.
 export const HANDLE_UPDATE_USER = 'HANDLE_UPDATE_USER';
+export const UPDATE_USER_FAILURE = 'UPDATE_USER_FAILURE';
 
 // LoggedInUsersPets: gets all the pets owned by the loggedInUser
 export const FETCH_USER_PETS = 'FETCH_USER_PETS';
