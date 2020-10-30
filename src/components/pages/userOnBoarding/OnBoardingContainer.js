@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import GroomerProfile from '../componentProgress/GroomerProfile';
-
-import { useEffect } from 'react';
-=======
 import React, { useState, useEffect } from 'react';
->>>>>>> e0b17e7800db8f2af5b5590c222fb9156717c9b7
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
@@ -70,8 +63,6 @@ const OnBoardingContainer = props => {
     <div>
       <h1>Welcome To Express Groomer!</h1>
       <h2>Let's Get Started</h2>
-
-      <GroomerProfile/>
 
       <div>
         <form onSubmit={onSubmit}>
