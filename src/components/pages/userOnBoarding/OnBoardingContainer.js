@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useOktaAuth } from '@okta/okta-react';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
 
 
 
 
 const OnBoardingContainer = props => {
-  let windowAuthState = window.localStorage.getItem('okta-token-storage');
-  let AuthInfo = JSON.parse(windowAuthState);
+  const { authState, authService } = useOktaAuth();
+  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
-  const AuthState = {
-    accessToken: AuthInfo.accessToken.accessToken,
-    idToken: AuthInfo.idToken.idToken,
-  };
+  let history = useHistory();
 
-  const UserInfo = {
+  const UserId = {
     sub: AuthInfo.idToken.claims.sub,
   };
 
@@ -25,10 +23,8 @@ const OnBoardingContainer = props => {
   });
 
   useEffect(() => {
-    props.fetchLoggedInUser(UserInfo, AuthState);
+    props.fetchLoggedInUser(UserId, authState);
   }, []);
-
-  let history = useHistory();
 
   const handleChange = e => {
     const formData = {
@@ -45,7 +41,7 @@ const OnBoardingContainer = props => {
         ...props.loggedInUserData,
         role: role.role,
       };
-      props.updateUser(updatedUserProfile, AuthState);
+      props.updateUser(updatedUserProfile, authState);
       if (role.role === 'client') {
         return history.push('/onboardingClient');
       } else if (role.role === 'groomer') {
@@ -56,9 +52,10 @@ const OnBoardingContainer = props => {
       ...props.loggedInUserData,
       role: 'new',
     };
-    props.updateUser(updatedUserProfile, AuthState);
+    props.updateUser(updatedUserProfile, authState);
     return history.push('/');
   };
+
   return (
     <div>
       <h1>Welcome To Express Groomer!</h1>

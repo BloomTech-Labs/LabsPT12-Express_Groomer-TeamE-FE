@@ -13,11 +13,7 @@ const PetCard = props => {
       <div className="imgContainer">
         <img className="petImg" src={props.pet.photo} />
       </div>
-      <div className="txtContainer">
-        <p>{props.pet.name}</p>
-        <p className="info">{props.pet.notes}</p>
-      </div>
-      <div className="btmSection">
+      <div className="btnSection">
         {props.pet.shots === true ? (
           <img
             className="petIcon"
@@ -33,6 +29,10 @@ const PetCard = props => {
         )}
         <img className="petIcon" src={edit} alt="edit pet button." />
         <img className="petIcon" src={trash} alt="delete pet button." />
+      </div>
+      <div className="txtContainer">
+        <p>{props.pet.name}</p>
+        <p className="info">{props.pet.notes}</p>
       </div>
     </div>
   );
