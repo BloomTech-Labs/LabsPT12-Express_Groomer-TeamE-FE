@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useOktaAuth } from '@okta/okta-react';
-import axiosWithAuth from '../../../api/axiosWithAuth';
-import GroomerEditForm from '../componentProgress/GroomerEditForm';
+import axiosWithAuth from '../../../../api/axiosWithAuth';
+import GroomerEditForm from '../GroomerProfile/GroomerEditForm';
 // Styling
 import {EditOutlined} from '@ant-design/icons';
 import { Avatar } from 'antd';

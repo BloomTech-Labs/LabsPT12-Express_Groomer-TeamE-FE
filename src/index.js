@@ -25,7 +25,7 @@ import { LoadingComponent } from './components/common';
 import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
-
+import GroomerProfile from './components/pages/GroomerDashoard/GroomerProfile/GroomerProfile';
 const AppWithRouter = withRouter(App);
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
@@ -70,6 +70,10 @@ function App() {
           component={ClientOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
+        <SecureRoute
+          path="/groomerProfile"
+          component={GroomerProfile}
+        />
       </Switch>
     </Security>
   );
