@@ -4,6 +4,7 @@ import './ManagePetContainer.css';
 // components
 import PetCardContainer from '../PetCardContainer/PetCardContainer';
 import AddPetForm from '../AddPetForm/AddPetForm';
+import UpdatePetForm from '../UpdatePetForm/UpdatePetForm';
 
 // Photos
 import logo from '../../../../assets/Logo.png';
@@ -18,7 +19,7 @@ const ManagePetContainer = () => {
     setIsAdding(!isAdding);
   };
 
-  const handleUpdatePet = e => {
+  const handleUpdatePet = () => {
     setIsUpdating(!isUpdating);
   };
 
@@ -40,8 +41,13 @@ const ManagePetContainer = () => {
           />
         </div>
       </div>
+
       {isAdding === false ? (
-        <PetCardContainer />
+        isUpdating === false ? (
+          <PetCardContainer handleUpdatePet={handleUpdatePet} />
+        ) : (
+          <UpdatePetForm />
+        )
       ) : (
         <AddPetForm isAdding={isAdding} setIsAdding={setIsAdding} />
       )}

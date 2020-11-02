@@ -25,6 +25,7 @@ import { LoadingComponent } from './components/common';
 import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
+// import UpdatePetForm from './components/pages/ClientDashboard/UpdatePetForm/UpdatePetForm.js';
 
 const AppWithRouter = withRouter(App);
 const store = createStore(reducer, applyMiddleware(logger, thunk));

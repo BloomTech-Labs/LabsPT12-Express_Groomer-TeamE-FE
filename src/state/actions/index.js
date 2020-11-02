@@ -16,6 +16,9 @@ export const FETCH_USER_PETS = 'FETCH_USER_PETS';
 // AddPet: sends a post requests and adds pet to the user account
 export const ADD_PET_SUCCESS = 'ADD_PET_SUCCESS';
 
+// deletePet: sends a del request and posts the success resp
+export const DELETE_PET_SUCCESS = 'DELETE_PET_SUCCESS';
+
 export const fetchLoggedInUser = (userInfo, authState) => dispatch => {
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
@@ -43,17 +46,6 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
     });
 };
 
-// export const getPetsByUserId = (userInfo, authState) => dispatch => {
-//     dispatch({ type: FETCH_START });
-//     getPetsByUserId(authState, userInfo.sub)
-//     .then(res => {
-//         dispatch({ type: FETCH_USER_PETS, payload: res.data})
-//     })
-//     .catch(err => {
-//         dispatch({ type: FETCH_FAILURE, payload: err })
-//     })
-// }
-
 export const getPetsByUserId = (userInfo, authState) => dispatch => {
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
@@ -78,4 +70,14 @@ export const addPet = (petData, authState) => dispatch => {
     });
 };
 
-// export const deletePet = ()
+export const deletePet = (petId, authState) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .delete(`/pet/${petId}`)
+    .then(res => {
+      dispatch({ type: DELETE_PET_SUCCESS, petData: res });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};

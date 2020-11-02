@@ -37,7 +37,7 @@ const AddPetForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     props.addPet(petState, AuthState);
-    history.push('/');
+    window.location.reload(true);
   };
 
   return (

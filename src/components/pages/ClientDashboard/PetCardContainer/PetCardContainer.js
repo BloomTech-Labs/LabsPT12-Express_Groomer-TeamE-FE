@@ -30,7 +30,13 @@ const PetCardContainer = props => {
     <div className="petCardContainer">
       {props.loggedInUsersPets ? (
         props.loggedInUsersPets.map(pet => {
-          return <PetCard key={pet.id} pet={pet} />;
+          return (
+            <PetCard
+              key={pet.id}
+              pet={pet}
+              handleUpdatePet={props.handleUpdatePet}
+            />
+          );
         })
       ) : (
         <p>Please, Add a pet!</p>
