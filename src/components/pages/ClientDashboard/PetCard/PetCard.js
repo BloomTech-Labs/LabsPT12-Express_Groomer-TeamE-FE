@@ -16,7 +16,7 @@ const PetCard = props => {
   let history = useHistory();
 
   const handleUpdatePet = () => {
-    history.push(`/updatePet/${props.pet.name}`);
+    history.push(`/updatePet/${props.pet.name}/${props.pet.id}`);
   };
 
   const handleDeletePet = id => {
