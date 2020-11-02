@@ -18,11 +18,19 @@ const PetCard = props => {
   const handleUpdatePet = () => {
     history.push(`/updatePet/${props.pet.name}`);
   };
+
   const handleDeletePet = id => {
+    let userResponse = window.confirm(
+      `Are you sure you'd like to delete ${props.pet.name}?`
+    );
     // redux action to delete pet.
-    props.deletePet(id, authState);
-    // refreshes the page so update will show.
-    window.location.reload(false);
+    if (userResponse === true) {
+      props.deletePet(id, authState);
+      // refreshes the page so update will show.
+      window.location.reload(false);
+    } else {
+      return null;
+    }
   };
 
   return (
