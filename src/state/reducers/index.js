@@ -5,6 +5,7 @@ import {
   HANDLE_UPDATE_USER,
   FETCH_USER_PETS,
   ADD_PET_SUCCESS,
+  DELETE_PET_SUCCESS,
 } from '../actions';
 
 export const initialState = {
@@ -50,6 +51,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggedInUsersPets: action.payload,
+      };
+    case DELETE_PET_SUCCESS:
+      return {
+        ...state,
+        Error: action.payload,
       };
 
     default:

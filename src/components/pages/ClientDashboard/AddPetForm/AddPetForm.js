@@ -4,6 +4,9 @@ import { addPet } from '../../../../state/actions/index';
 import { useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 
+// photos
+import logo from '../../../../assets/Logo.png';
+
 const AddPetForm = props => {
   const { authState, authService } = useOktaAuth();
   let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
@@ -33,11 +36,19 @@ const AddPetForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     props.addPet(petState, authState);
-    history.push('/');
+    history.push('/petPortal');
+  };
+
+  const handleCancel = e => {
+    e.preventDefault();
+    history.push('/petPortal');
   };
 
   return (
     <div className="AddPetForm">
+      <div className="PetManagementHeader">
+        <img className="logo" src={logo} alt="Express Groomer Logo." />
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Name"
@@ -68,6 +79,7 @@ const AddPetForm = props => {
           onChange={handleChange}
         />
       </form>
+      <button onClick={handleCancel}>Cancel</button>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

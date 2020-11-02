@@ -1,4 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { deletePet } from '../../../../state/actions/index';
+import { useOktaAuth } from '@okta/okta-react';
 import './PetCard.css';
 
 // icons
@@ -8,6 +12,19 @@ import edit from '../../../../assets/edit.png';
 import trash from '../../../../assets/trash.png';
 
 const PetCard = props => {
+  const { authState, authService } = useOktaAuth();
+  let history = useHistory();
+
+  const handleUpdatePet = () => {
+    history.push(`/updatePet/${props.pet.name}`);
+  };
+  const handleDeletePet = id => {
+    // redux action to delete pet.
+    props.deletePet(id, authState);
+    // refreshes the page so update will show.
+    window.location.reload(false);
+  };
+
   return (
     <div className="petCard">
       <div className="imgContainer">
@@ -27,8 +44,18 @@ const PetCard = props => {
             alt="immunization out of date with needle red."
           />
         )}
-        <img className="petIcon" src={edit} alt="edit pet button." />
-        <img className="petIcon" src={trash} alt="delete pet button." />
+        <img
+          className="petIcon"
+          onClick={() => handleUpdatePet()}
+          src={edit}
+          alt="edit pet button."
+        />
+        <img
+          className="petIcon"
+          onClick={() => handleDeletePet(props.pet.id)}
+          src={trash}
+          alt="delete pet button."
+        />
       </div>
       <div className="txtContainer">
         <p>{props.pet.name}</p>
@@ -38,4 +65,10 @@ const PetCard = props => {
   );
 };
 
-export default PetCard;
+const mapStateToProps = state => {
+  return {
+    state: state,
+  };
+};
+
+export default connect(mapStateToProps, { deletePet })(PetCard);
