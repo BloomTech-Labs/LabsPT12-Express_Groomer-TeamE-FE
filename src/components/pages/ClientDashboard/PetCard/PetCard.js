@@ -12,7 +12,7 @@ import edit from '../../../../assets/edit.png';
 import trash from '../../../../assets/trash.png';
 
 const PetCard = props => {
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   let history = useHistory();
 
   const handleUpdatePet = () => {
@@ -36,7 +36,11 @@ const PetCard = props => {
   return (
     <div className="petCard">
       <div className="imgContainer">
-        <img className="petImg" src={props.pet.photo} />
+        <img
+          className="petImg"
+          src={props.pet.photo}
+          alt={`${props.pet.name}`}
+        />
       </div>
       <div className="btnSection">
         {props.pet.shots === true ? (

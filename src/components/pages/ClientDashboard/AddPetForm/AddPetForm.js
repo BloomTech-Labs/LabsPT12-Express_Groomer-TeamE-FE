@@ -8,7 +8,7 @@ import { useOktaAuth } from '@okta/okta-react';
 import logo from '../../../../assets/Logo.png';
 
 const AddPetForm = props => {
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
   let history = useHistory();

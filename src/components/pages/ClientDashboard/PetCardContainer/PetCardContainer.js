@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import {
@@ -11,7 +11,7 @@ import './PetCardContainer.css';
 import PetCard from '../PetCard/PetCard';
 
 const PetCardContainer = props => {
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
   const User = {
