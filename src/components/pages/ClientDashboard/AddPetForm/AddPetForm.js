@@ -99,8 +99,12 @@ const AddPetForm = props => {
           </label>
         </div>
         <div className="btnContainer">
-          <Button onClick={handleCancel}>Cancel</Button>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button className="canBtn" onClick={handleCancel}>
+            Cancel
+          </Button>
+          <Button className="subBtn" onClick={handleSubmit}>
+            Submit
+          </Button>
         </div>
       </form>
     </div>

@@ -40,3 +40,17 @@
   width: 70%;
   margin: auto;
 }
+.canBtn {
+  background-color: red;
+  border: none;
+  color: black;
+}
+.subBtn {
+  background-color: transparent;
+  border: 2px solid #00b4d8;
+}
+.subBtn:hover {
+  color: white;
+  background-color: #00b4d8;
+  border: none;
+}
