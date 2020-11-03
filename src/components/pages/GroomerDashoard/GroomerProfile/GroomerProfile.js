@@ -62,21 +62,23 @@ const GroomerProfile = () => {
   const [groomerData, setGroomerData] = useState({})
   const [showPopUp, setShowPopUp] = useState(true)
 
+
 // axios call to get groomer data
   useEffect(() =>{
-    axiosWithAuth()
-    axios.get('http://localhost:8000/profiles/00ulthapbErVUwVJy4x6', {
-      headers: {
-          Authorization: `Bearer ${authState.idToken}`,
-        },
-    })
-    .then(response =>{
-      console.log(response)
-      setGroomerData(response.data)
-    })
-    .catch(error =>{
-      console.error(error)
-    })
+    // axiosWithAuth()
+    // axios.get('http://localhost:8000/profiles/00ulthapbErVUwVJy4x6', {
+    //   headers: {
+    //       Authorization: `Bearer ${authState.idToken}`,
+    //     },
+    // })
+    // .then(response =>{
+    //   console.log(response)
+    //   setGroomerData(response.data)
+    // })
+    // .catch(error =>{
+    //   console.error(error)
+    // })
+    
   },[authState, showPopUp])
 
   // Functions 

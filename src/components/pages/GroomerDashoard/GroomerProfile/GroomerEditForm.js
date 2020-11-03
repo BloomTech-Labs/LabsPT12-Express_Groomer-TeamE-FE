@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useOktaAuth } from '@okta/okta-react';
 import axiosWithAuth from '../../../../api/axiosWithAuth';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
 // Styling
 import styled from 'styled-components';
 
@@ -21,21 +24,28 @@ const PopUpFormContainer = styled.div`
     position: absolute;  
     left: 20%;  
     right: 20%;  
-    top: 15%;  
-    bottom: 15%;  
+    top: 10%;  
     margin: auto;  
     border-radius: 10px;  
     background: white;
   }
-${'' /* 
-.form-container{
-    border:black solid 1px;
-    width:60%;
-    margin:1px auto;
-    border-radius:.5%
-    height:100vh;
-    ${'' /* background-color:rgb(16,183,239); */}
-} */}
+  .form-container{
+      width:85%;
+      margin:0 auto;
+      border:solid 1px black;
+      border-radius: 5%;
+
+    .form-header{
+        h1{
+          text-align:center;
+        }
+        .ant-avatar{
+            margin:10px auto;
+            display:block;
+        }
+    }
+  }
+
   form{
       display:flex;
       justify-content:space-evenly;
@@ -44,23 +54,25 @@ ${'' /*
       
   }
   .left-side{
-      width:55%;
+      width:45%;
+
+        input{
+            width:100%;
+        }
   }
 
   label{
       font-size:15px;
       font-weight:bold;
-      display:inline;
+      display:block;
       margin:3px 0;
     }
   input{
-      width:100%;
       margin: 7px 0;
       border-radius:15px;
       background:transparent;
       border:none;
       border-bottom: 1px solid black;
-
   }
 `;
 
@@ -75,7 +87,14 @@ const GroomerEditForm = (props) => {
       <PopUpFormContainer className = "popUp-form-container">
         <div className="inner-popUp">
             <div className="form-container">
-                <h1>Edit Your Profile</h1>
+                <div className="form-header">
+                    <Avatar
+
+                    size={45} 
+                    icon={<UserOutlined/>}
+                    />
+                    <h1>Edit Your Profile</h1>
+                </div>
                 <form>
                     <div className="left-side">
                         <label htmlFor ="businessName">Business Name: </label>
