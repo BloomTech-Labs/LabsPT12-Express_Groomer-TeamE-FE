@@ -4,9 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions';
 
-
-
-
 const OnBoardingContainer = props => {
   const { authState, authService } = useOktaAuth();
   let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
@@ -16,7 +13,6 @@ const OnBoardingContainer = props => {
   const UserId = {
     sub: AuthInfo.idToken.claims.sub,
   };
-
 
   const [role, setRole] = useState({
     role: 'new',

@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import ClientDashboard from '../ClientDashboard/ClientDashboard';
 import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
-
 function RenderHomePage(props) {
   const { userInfo, authService, authState } = props;
 
@@ -34,8 +33,6 @@ function RenderHomePage(props) {
           .role === 'groomer' ? (
         <GroomerDashboard />
       ) : null}
-
-
     </div>
   );
 }
