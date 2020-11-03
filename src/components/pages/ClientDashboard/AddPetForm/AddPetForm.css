@@ -1,0 +1,42 @@
+.addPetContainer {
+  height: 100vh;
+  width: 100vw;
+  background: url('../../../../assets/Shelter.jpg') no-repeat center;
+  background-size: contain;
+}
+.logo {
+  width: 22%;
+  margin-left: 0px;
+  margin-bottom: 2rem;
+}
+.addPetForm {
+  width: 25%;
+  margin: auto;
+  padding: 1rem;
+  background-color: rgba(3, 4, 94, 0.5);
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+}
+.formLabel {
+  width: 95%;
+  color: white;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+}

@@ -47,7 +47,7 @@ const UpdatePetForm = props => {
 
   const handleCancel = e => {
     e.preventDefault();
-    History.push('PetPortal');
+    History.push('/PetPortal');
   };
 
   useEffect(() => {
