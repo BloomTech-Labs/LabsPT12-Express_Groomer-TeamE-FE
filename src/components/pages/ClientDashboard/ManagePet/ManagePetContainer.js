@@ -6,7 +6,7 @@ import './ManagePetContainer.css';
 import PetCardContainer from '../PetCardContainer/PetCardContainer';
 
 // Photos
-import logo from '../../../../assets/Logo.png';
+import logo from '../../../../assets/GroomerExpressLogo.png';
 import darkAdd from '../../../../assets/plusDark.png';
 import lightAdd from '../../../../assets/plusLight.png';
 

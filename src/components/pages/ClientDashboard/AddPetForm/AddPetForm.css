@@ -49,8 +49,23 @@
 .subBtn {
   background-color: transparent;
   border: 2px solid #00b4d8;
+  opacity: 0.5;
+  color: black;
+  height: 32px;
+  width: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .subBtn:hover {
+  background-color: transparent;
+  border: 2px solid #00b4d8;
+  color: black;
+}
+.submit {
+  opacity: 1;
+}
+.submit:hover {
   color: white;
   background-color: #00b4d8;
   border: none;

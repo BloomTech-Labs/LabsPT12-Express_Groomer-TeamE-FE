@@ -16,6 +16,7 @@ const GroomerDashboard = () => {
       <div className="clientDashContainer">
         <div className="groomerHeader">
           <h1>Groomer Dashboard</h1>
+
           <div className="groomerIcons">
             <div className="viewBusinessPage">
               <img
