@@ -14,7 +14,7 @@ function RenderHomePage(props) {
 
   useEffect(() => {
     props.fetchLoggedInUser(userInfo, authState);
-  }, [authState, userInfo]);
+  }, [authState, userInfo, props]);
 
   return (
     <div>
