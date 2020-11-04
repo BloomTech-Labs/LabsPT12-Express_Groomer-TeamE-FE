@@ -1,9 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import './GroomerDashboard.css';
-
-// IconCard
-import IconCard from '../../IconCards/IconCard';
 
 // Icons
 import email from '../../../assets/email-blue.png';
@@ -11,18 +8,8 @@ import appointment from '../../../assets/appointment.png';
 import suitcase from '../../../assets/suitcase.png';
 import view from '../../../assets/eye.png';
 
-const icons = [email, appointment];
-
 const GroomerDashboard = () => {
-  let history = useHistory();
-  let key = 0;
-  let id = 0;
-
-  const handleClick = id => {
-    if (id === 5) {
-      history.push('/PetPortal');
-    }
-  };
+  // let history = useHistory();
 
   return (
     <div>
