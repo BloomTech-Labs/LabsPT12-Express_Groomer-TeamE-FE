@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { updatePet, getPetByPetId } from '../../../../state/actions/index';
 import { useOktaAuth } from '@okta/okta-react';
 import { useParams, useHistory } from 'react-router-dom';
+import { Input, Button } from 'antd';
 
 // styles
 import './UpdatePetForm.css';
 
 // Photos
-import logo from '../../../../assets/Logo.png';
+import logo from '../../../../assets/GroomerExpressLogo.png';
 
 const UpdatePetForm = props => {
   let Params = useParams();
@@ -33,6 +34,9 @@ const UpdatePetForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    let userResponse = window.confirm(
+      `Are you sure you'd like to change ${Params.name}'s information?`
+    );
     const updatedPetData = {
       ...props.petFoundById,
       id: Params.id,
@@ -41,8 +45,12 @@ const UpdatePetForm = props => {
       photo: data.photo,
       notes: data.notes,
     };
-    props.updatePet(updatedPetData, authState);
-    return History.push('/PetPortal');
+    if (userResponse === true) {
+      props.updatePet(updatedPetData, authState);
+      return History.push('/PetPortal');
+    } else {
+      return History.push('/PetPortal');
+    }
   };
 
   const handleCancel = e => {
@@ -55,41 +63,69 @@ const UpdatePetForm = props => {
   }, [id]);
 
   return (
-    <div>
+    <div className="updatePetContainer">
       <div className="PetManagementHeader">
         <img className="logo" src={logo} alt="Express Groomer Logo." />
       </div>
       <form className="updatePetForm">
-        <input
-          type="text"
-          placeholder={props.petFoundById.name}
-          name="name"
-          value={data.name}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder={props.petFoundById.type}
-          name="type"
-          value={data.type}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder={props.petFoundById.photo}
-          name="photo"
-          value={data.photo}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder={props.petFoundById.notes}
-          name="notes"
-          value={data.notes}
-          onChange={handleChange}
-        />
-        <button onClick={handleCancel}>Cancel</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <div className="inputContainer">
+          <label className="formLabel">
+            Name:
+            <Input
+              className="input"
+              type="text"
+              placeholder={props.petFoundById.name}
+              name="name"
+              value={data.name}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="formLabel">
+            Type:
+            <Input
+              className="input"
+              type="text"
+              placeholder={props.petFoundById.type}
+              name="type"
+              value={data.type}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="formLabel">
+            Photo src:
+            <Input
+              className="input"
+              type="text"
+              placeholder={props.petFoundById.photo}
+              name="photo"
+              value={data.photo}
+              onChange={handleChange}
+            />
+          </label>
+          <label className="formLabel">
+            Notes:
+            <Input
+              className="input"
+              type="text"
+              placeholder={props.petFoundById.notes}
+              name="notes"
+              value={data.notes}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div className="btnContainer">
+          <Button className="canBtn" onClick={handleCancel}>
+            Cancel
+          </Button>
+          {data.name && data.type && data.photo && data.notes ? (
+            <Button className="subBtn submit" onClick={handleSubmit}>
+              Submit
+            </Button>
+          ) : (
+            <div className="subBtn">Submit</div>
+          )}
+        </div>
       </form>
     </div>
   );
