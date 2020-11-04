@@ -17,10 +17,19 @@ const ManagePetContainer = () => {
     history.push('/addPet');
   };
 
+  const handleDashboardClick = () => {
+    history.push('/');
+  };
+
   return (
     <div className="PetManagementContainer">
       <div className="PetManagementHeader">
-        <img className="logo" src={logo} alt="Express Groomer Logo." />
+        <img
+          className="logo"
+          onClick={handleDashboardClick}
+          src={logo}
+          alt="Express Groomer Logo."
+        />
         <div className="petBtnContainer">
           <img
             className="darkAdd"

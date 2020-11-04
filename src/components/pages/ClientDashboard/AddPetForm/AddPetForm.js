@@ -46,10 +46,19 @@ const AddPetForm = props => {
     history.push('/petPortal');
   };
 
+  const handleDashboardClick = () => {
+    history.push('/');
+  };
+
   return (
     <div className="addPetContainer">
       <div className="PetManagementHeader">
-        <img className="logo" src={logo} alt="Express Groomer Logo." />
+        <img
+          onClick={handleDashboardClick}
+          className="logo"
+          src={logo}
+          alt="Express Groomer Logo."
+        />
       </div>
       <form className="addPetForm" onSubmit={handleSubmit}>
         <div className="inputContainer">

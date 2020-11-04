@@ -24,6 +24,10 @@ const UpdatePetForm = props => {
     notes: '',
   });
 
+  useEffect(() => {
+    props.getPetByPetId(Params.id, authState);
+  }, [id]);
+
   const handleChange = e => {
     const newData = {
       ...data,
@@ -58,14 +62,19 @@ const UpdatePetForm = props => {
     History.push('/PetPortal');
   };
 
-  useEffect(() => {
-    props.getPetByPetId(Params.id, authState);
-  }, [id]);
+  const handleDashboardClick = () => {
+    History.push('/');
+  };
 
   return (
     <div className="updatePetContainer">
       <div className="PetManagementHeader">
-        <img className="logo" src={logo} alt="Express Groomer Logo." />
+        <img
+          className="logo"
+          onClick={handleDashboardClick}
+          src={logo}
+          alt="Express Groomer Logo."
+        />
       </div>
       <form className="updatePetForm">
         <div className="inputContainer">

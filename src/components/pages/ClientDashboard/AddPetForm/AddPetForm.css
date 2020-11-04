@@ -9,6 +9,13 @@
   margin-left: 0px;
   margin-bottom: 2rem;
   margin-top: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+.logo:hover {
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
 }
 .addPetForm {
   width: 25%;
