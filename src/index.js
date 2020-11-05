@@ -73,7 +73,7 @@ function App() {
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
         <SecureRoute path="/addPet" component={AddPetForm} />
-        <SecureRoute path="/updatePet/:name" component={UpdatePetForm} />
+        <SecureRoute path="/updatePet/:name/:id" component={UpdatePetForm} />
       </Switch>
     </Security>
   );

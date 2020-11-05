@@ -6,6 +6,8 @@ import {
   FETCH_USER_PETS,
   ADD_PET_SUCCESS,
   DELETE_PET_SUCCESS,
+  FIND_PET_BYID,
+  UPDATE_PET_SUCCESS,
 } from '../actions';
 
 export const initialState = {
@@ -15,6 +17,8 @@ export const initialState = {
   authState: '',
   loggedInUserData: '',
   loggedInUsersPets: '',
+  petFoundById: '',
+  updatePetResponse: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -56,6 +60,16 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         Error: action.payload,
+      };
+    case FIND_PET_BYID:
+      return {
+        ...state,
+        petFoundById: action.payload,
+      };
+    case UPDATE_PET_SUCCESS:
+      return {
+        ...state,
+        updatePetResponse: action.payload,
       };
 
     default:

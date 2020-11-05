@@ -1,11 +1,8 @@
-.updatePetContainer {
+.addPetContainer {
   height: 100vh;
   width: 100vw;
   background: url('../../../../assets/Shelter.jpg') no-repeat center;
   background-size: contain;
-}
-.PetManagementHeader {
-  margin: auto;
 }
 .logo {
   width: 22%;
@@ -20,7 +17,7 @@
   transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform: translateY(-3px);
 }
-.updatePetForm {
+.addPetForm {
   width: 25%;
   margin: auto;
   padding: 1rem;

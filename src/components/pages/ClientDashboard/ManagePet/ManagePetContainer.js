@@ -6,7 +6,7 @@ import './ManagePetContainer.css';
 import PetCardContainer from '../PetCardContainer/PetCardContainer';
 
 // Photos
-import logo from '../../../../assets/Logo.png';
+import logo from '../../../../assets/GroomerExpressLogo.png';
 import darkAdd from '../../../../assets/plusDark.png';
 import lightAdd from '../../../../assets/plusLight.png';
 
@@ -17,10 +17,19 @@ const ManagePetContainer = () => {
     history.push('/addPet');
   };
 
+  const handleDashboardClick = () => {
+    history.push('/');
+  };
+
   return (
     <div className="PetManagementContainer">
       <div className="PetManagementHeader">
-        <img className="logo" src={logo} alt="Express Groomer Logo." />
+        <img
+          className="logo"
+          onClick={handleDashboardClick}
+          src={logo}
+          alt="Express Groomer Logo."
+        />
         <div className="petBtnContainer">
           <img
             className="darkAdd"
