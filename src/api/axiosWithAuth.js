@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosWithAuth = authState => {
   return axios.create({
-    baseURL: 'http://localhost:8000/',
+    baseURL: 'https://labspt12-express-groomer-e-api.herokuapp.com/',
     headers: {
       Authorization: `Bearer ${authState.idToken}`,
     },
