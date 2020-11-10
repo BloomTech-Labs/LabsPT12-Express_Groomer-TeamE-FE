@@ -25,7 +25,12 @@ import { LoadingComponent } from './components/common';
 import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
+
 import GroomerProfile from './components/pages/GroomerDashoard/GroomerProfile/GroomerProfile';
+
+import AddPetForm from './components/pages/ClientDashboard/AddPetForm/AddPetForm';
+import UpdatePetForm from './components/pages/ClientDashboard/UpdatePetForm/UpdatePetForm';
+
 const AppWithRouter = withRouter(App);
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
@@ -70,7 +75,12 @@ function App() {
           component={ClientOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
+<<<<<<< HEAD
         <SecureRoute path="/groomerProfile" component={GroomerProfile} />
+=======
+        <SecureRoute path="/addPet" component={AddPetForm} />
+        <SecureRoute path="/updatePet/:name/:id" component={UpdatePetForm} />
+>>>>>>> 48e0581fafd8729dc032158bad9c47fbaa98b543
       </Switch>
     </Security>
   );

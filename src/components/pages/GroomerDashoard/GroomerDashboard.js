@@ -1,9 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import './GroomerDashboard.css';
-
-// IconCard
-import IconCard from '../../IconCards/IconCard';
 
 // Icons
 import email from '../../../assets/email-blue.png';
@@ -12,6 +9,7 @@ import suitcase from '../../../assets/suitcase.png';
 import view from '../../../assets/eye.png';
 
 const GroomerDashboard = () => {
+
   let history = useHistory();
   let key = 0;
   let id = 0;
@@ -22,11 +20,13 @@ const GroomerDashboard = () => {
     }
   };
 
+
   return (
     <div>
       <div className="clientDashContainer">
         <div className="groomerHeader">
           <h1>Groomer Dashboard</h1>
+
           <div className="groomerIcons">
             <div
               className="viewBusinessPage"

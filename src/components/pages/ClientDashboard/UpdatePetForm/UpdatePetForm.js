@@ -1,75 +1,91 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { addPet } from '../../../../state/actions/index';
-import { useHistory } from 'react-router-dom';
+import { updatePet, getPetByPetId } from '../../../../state/actions/index';
 import { useOktaAuth } from '@okta/okta-react';
+import { useParams, useHistory } from 'react-router-dom';
 import { Input, Button } from 'antd';
-import './AddPetForm.css';
 
-// photos
+// styles
+import './UpdatePetForm.css';
+
+// Photos
 import logo from '../../../../assets/GroomerExpressLogo.png';
 
-const AddPetForm = props => {
+const UpdatePetForm = props => {
+  let Params = useParams();
+  let History = useHistory();
   const { authState } = useOktaAuth();
-  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
+  const { id } = useParams();
 
-  let history = useHistory();
-
-  const User = {
-    id: AuthInfo.idToken.claims.sub,
-  };
-
-  const [petState, setPetState] = useState({
+  const [data, setData] = useState({
     name: '',
     type: '',
     photo: '',
     notes: '',
-    user_id: User.id,
   });
+
+  useEffect(() => {
+    props.getPetByPetId(Params.id, authState);
+  }, [id]);
 
   const handleChange = e => {
     const newData = {
-      ...petState,
+      ...data,
       [e.target.name]: e.target.value,
     };
-    setPetState(newData);
+    setData(newData);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.addPet(petState, authState);
-    history.push('/petPortal');
+    let userResponse = window.confirm(
+      `Are you sure you'd like to change ${Params.name}'s information?`
+    );
+    const updatedPetData = {
+      ...props.petFoundById,
+      id: Params.id,
+      name: data.name,
+      type: data.type,
+      photo: data.photo,
+      notes: data.notes,
+    };
+    if (userResponse === true) {
+      props.updatePet(updatedPetData, authState);
+      return History.push('/PetPortal');
+    } else {
+      return History.push('/PetPortal');
+    }
   };
 
   const handleCancel = e => {
     e.preventDefault();
-    history.push('/petPortal');
+    History.push('/PetPortal');
   };
 
   const handleDashboardClick = () => {
-    history.push('/');
+    History.push('/');
   };
 
   return (
-    <div className="addPetContainer">
+    <div className="updatePetContainer">
       <div className="PetManagementHeader">
         <img
-          onClick={handleDashboardClick}
           className="logo"
+          onClick={handleDashboardClick}
           src={logo}
           alt="Express Groomer Logo."
         />
       </div>
-      <form className="addPetForm" onSubmit={handleSubmit}>
+      <form className="updatePetForm">
         <div className="inputContainer">
           <label className="formLabel">
             Name:
             <Input
               className="input"
-              placeholder="Name"
               type="text"
+              placeholder={props.petFoundById.name}
               name="name"
-              value={petState.name}
+              value={data.name}
               onChange={handleChange}
             />
           </label>
@@ -77,21 +93,21 @@ const AddPetForm = props => {
             Type:
             <Input
               className="input"
-              placeholder="Type"
               type="text"
+              placeholder={props.petFoundById.type}
               name="type"
-              value={petState.type}
+              value={data.type}
               onChange={handleChange}
             />
           </label>
           <label className="formLabel">
-            Photo Src:
+            Photo src:
             <Input
               className="input"
-              placeholder="Insert Photo link"
               type="text"
+              placeholder={props.petFoundById.photo}
               name="photo"
-              value={petState.photo}
+              value={data.photo}
               onChange={handleChange}
             />
           </label>
@@ -99,10 +115,10 @@ const AddPetForm = props => {
             Notes:
             <Input
               className="input"
-              placeholder="Bio"
               type="text"
+              placeholder={props.petFoundById.notes}
               name="notes"
-              value={petState.notes}
+              value={data.notes}
               onChange={handleChange}
             />
           </label>
@@ -111,10 +127,7 @@ const AddPetForm = props => {
           <Button className="canBtn" onClick={handleCancel}>
             Cancel
           </Button>
-          {petState.name &&
-          petState.type &&
-          petState.photo &&
-          petState.notes ? (
+          {data.name && data.type && data.photo && data.notes ? (
             <Button className="subBtn submit" onClick={handleSubmit}>
               Submit
             </Button>
@@ -129,8 +142,10 @@ const AddPetForm = props => {
 
 const mapStateToProps = state => {
   return {
-    loggedInUsersPets: state.loggedInUsersPets,
+    petFoundById: state.petFoundById,
   };
 };
 
-export default connect(mapStateToProps, { addPet })(AddPetForm);
+export default connect(mapStateToProps, { updatePet, getPetByPetId })(
+  UpdatePetForm
+);

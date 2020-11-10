@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './ManagePetContainer.css';
 
 // components
 import PetCardContainer from '../PetCardContainer/PetCardContainer';
-import AddPetForm from '../AddPetForm/AddPetForm';
 
 // Photos
-import logo from '../../../../assets/Logo.png';
+import logo from '../../../../assets/GroomerExpressLogo.png';
 import darkAdd from '../../../../assets/plusDark.png';
 import lightAdd from '../../../../assets/plusLight.png';
 
 const ManagePetContainer = () => {
-  const [isAdding, setIsAdding] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
+  let history = useHistory();
 
   const handleAddPet = e => {
-    setIsAdding(!isAdding);
+    history.push('/addPet');
   };
 
-  const handleUpdatePet = e => {
-    setIsUpdating(!isUpdating);
+  const handleDashboardClick = () => {
+    history.push('/');
   };
 
   return (
     <div className="PetManagementContainer">
       <div className="PetManagementHeader">
-        <img className="logo" src={logo} alt="Express Groomer Logo." />
+        <img
+          className="logo"
+          onClick={handleDashboardClick}
+          src={logo}
+          alt="Express Groomer Logo."
+        />
         <div className="petBtnContainer">
           <img
             className="darkAdd"
@@ -40,11 +44,7 @@ const ManagePetContainer = () => {
           />
         </div>
       </div>
-      {isAdding === false ? (
-        <PetCardContainer />
-      ) : (
-        <AddPetForm isAdding={isAdding} setIsAdding={setIsAdding} />
-      )}
+      <PetCardContainer />
     </div>
   );
 };

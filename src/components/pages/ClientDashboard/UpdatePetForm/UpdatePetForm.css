@@ -1,0 +1,81 @@
+.updatePetContainer {
+  height: 100vh;
+  width: 100vw;
+  background: url('../../../../assets/Shelter.jpg') no-repeat center;
+  background-size: contain;
+}
+.PetManagementHeader {
+  margin: auto;
+}
+.logo {
+  width: 22%;
+  margin-left: 0px;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+.logo:hover {
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
+.updatePetForm {
+  width: 25%;
+  margin: auto;
+  padding: 1rem;
+  background-color: rgba(3, 4, 94, 0.5);
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  width: 100%;
+  margin-bottom: 2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+}
+.formLabel {
+  width: 95%;
+  color: white;
+}
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+}
+.canBtn {
+  background-color: red;
+  border: none;
+  color: black;
+}
+.subBtn {
+  background-color: transparent;
+  border: 2px solid #00b4d8;
+  opacity: 0.5;
+  color: black;
+  height: 32px;
+  width: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.subBtn:hover {
+  background-color: transparent;
+  border: 2px solid #00b4d8;
+  color: black;
+}
+.submit {
+  opacity: 1;
+}
+.submit:hover {
+  color: white;
+  background-color: #00b4d8;
+  border: none;
+}

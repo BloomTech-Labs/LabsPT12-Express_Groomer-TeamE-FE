@@ -2,6 +2,9 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './ClientDashboard.css';
 
+// Logo
+import logo from '../../../assets/GroomerExpressLogo.png';
+
 // IconCard
 import IconCard from '../../IconCards/IconCard';
 
@@ -28,7 +31,7 @@ const ClientDashboard = () => {
   return (
     <div className="clientDashContainer">
       <div className="clientHeader">
-        <h1>Client Dashboard</h1>
+        <img className="logo" src={logo} alt="Express Groomer Logo." />
       </div>
       <div className="cardContainer">
         {icons.map(icon => {
