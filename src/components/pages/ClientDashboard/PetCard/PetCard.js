@@ -27,7 +27,7 @@ const PetCard = props => {
     if (userResponse === true) {
       props.deletePet(id, authState);
       // refreshes the page so update will show.
-      window.location.reload(false);
+      history.push('/');
     } else {
       return null;
     }
