@@ -75,12 +75,11 @@ function App() {
           component={ClientOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
-<<<<<<< HEAD
         <SecureRoute path="/groomerProfile" component={GroomerProfile} />
-=======
+
         <SecureRoute path="/addPet" component={AddPetForm} />
         <SecureRoute path="/updatePet/:name/:id" component={UpdatePetForm} />
->>>>>>> 48e0581fafd8729dc032158bad9c47fbaa98b543
+
       </Switch>
     </Security>
   );
