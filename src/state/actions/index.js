@@ -26,10 +26,12 @@ export const FETCH_USER_PETS = 'FETCH_USER_PETS';
 export const UPDATE_PET_SUCCESS = 'UPDATE_PET_SUCCESS';
 
 export const fetchLoggedInUser = (user, authState) => dispatch => {
+  console.log('IN ACTIONS:', user, authState);
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
     .get(`profiles/${user.sub}`)
     .then(res => {
+      console.log('RES & RES DATA:', res, res.data);
       dispatch({ type: USER_FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
