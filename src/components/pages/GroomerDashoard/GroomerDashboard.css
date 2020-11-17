@@ -41,6 +41,26 @@
   flex-direction: row;
   align-items: center;
   margin-top: 2rem;
+  justify-content: space-between;
+}
+.appointmentHeader h2 {
+  color: #90e0ef;
+}
+.appointmentHeader p {
+  font-size: 1rem;
+  color: #90e0ef;
+  text-decoration: underline;
+  transition: all 0.1s ease-in-out;
+  width: 7%;
+}
+.appointmentHeader p:hover {
+  font-size: 1rem;
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
 }
 .appointmentHeader h2 {
   margin-top: 0.8rem;
