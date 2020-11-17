@@ -7,6 +7,49 @@
   margin: auto;
   height: 5rem;
 }
-.msgIcon {
-  width: 3%;
+.eye {
+  position: relative;
+  bottom: 2rem;
+  left: 4.5rem;
+  width: 15%;
+}
+.groomerIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.viewBusinessPage {
+  transition: all 0.1s ease-in-out;
+}
+.viewBusinessPage:hover {
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
+.email {
+  transition: all 0.1s ease-in-out;
+}
+.email:hover {
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
+.appointmentHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+}
+.appointmentHeader h2 {
+  margin-top: 0.8rem;
+  margin-left: 1rem;
+}
+.appointmentContainer {
+  width: 76.5%;
+  margin: auto;
+}
+.groomerAppointments {
+  width: 5%;
 }

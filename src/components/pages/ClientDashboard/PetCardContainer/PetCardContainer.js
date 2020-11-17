@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {
-  fetchLoggedInUser,
-  getPetsByUserId,
-} from '../../../../state/actions/index';
+import { useOktaAuth } from '@okta/okta-react';
+import { getPetsByUserId } from '../../../../state/actions/index';
 import './PetCardContainer.css';
 
 //components
 import PetCard from '../PetCard/PetCard';
 
 const PetCardContainer = props => {
-  let windowAuthState = window.localStorage.getItem('okta-token-storage');
-  let AuthInfo = JSON.parse(windowAuthState);
+  const { getPetsByUserId } = props;
+  const { authState } = useOktaAuth();
+  let AuthInfo = JSON.parse(window.localStorage.getItem('okta-token-storage'));
 
-  const AuthState = {
-    accessToken: AuthInfo.accessToken.accessToken,
-    idToken: AuthInfo.idToken.idToken,
-  };
-
-  const UserInfo = {
-    sub: AuthInfo.idToken.claims.sub,
+  const User = {
+    id: AuthInfo.idToken.claims.sub,
   };
 
   useEffect(() => {
-    props.getPetsByUserId(UserInfo, AuthState);
-  }, []);
+    getPetsByUserId(User, authState);
+  }, [authState, getPetsByUserId]);
 
   return (
     <div className="petCardContainer">
@@ -46,6 +40,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchLoggedInUser, getPetsByUserId })(
-  PetCardContainer
-);
+export default connect(mapStateToProps, { getPetsByUserId })(PetCardContainer);

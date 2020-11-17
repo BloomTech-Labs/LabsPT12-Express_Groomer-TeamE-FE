@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { fetchLoggedInUser } from '../../../state/actions/index';
 import { connect } from 'react-redux';
@@ -8,13 +8,13 @@ import ClientDashboard from '../ClientDashboard/ClientDashboard';
 import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
 function RenderHomePage(props) {
-  const { userInfo, authService, authState } = props;
+  const { userInfo, authState } = props;
 
   let history = useHistory();
 
   useEffect(() => {
     props.fetchLoggedInUser(userInfo, authState);
-  }, [authState, userInfo]);
+  }, [authState, userInfo, props]);
 
   return (
     <div>

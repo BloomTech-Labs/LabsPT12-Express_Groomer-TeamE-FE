@@ -4,6 +4,8 @@
 }
 .clientHeader {
   margin-left: 5rem;
+  display: flex;
+  justify-content: center;
 }
 .cardContainer {
   display: flex;

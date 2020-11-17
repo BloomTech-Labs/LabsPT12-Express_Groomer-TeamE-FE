@@ -24,7 +24,7 @@
 p {
   font-size: 10px;
 }
-.btmSection {
+.btnSection {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +34,7 @@ p {
   transition: all 0.1s ease-in-out;
 }
 .petIcon {
-  width: 10%;
+  width: 8%;
 }
 .petIcon:hover {
   cursor: pointer;

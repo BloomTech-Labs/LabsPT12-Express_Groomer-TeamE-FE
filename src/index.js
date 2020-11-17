@@ -26,6 +26,8 @@ import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingCon
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
 import GroomerOnBoardingForm from './components/pages/userOnBoarding/GroomerOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
+import AddPetForm from './components/pages/ClientDashboard/AddPetForm/AddPetForm';
+import UpdatePetForm from './components/pages/ClientDashboard/UpdatePetForm/UpdatePetForm';
 
 const AppWithRouter = withRouter(App);
 const store = createStore(reducer, applyMiddleware(logger, thunk));
@@ -75,6 +77,8 @@ function App() {
           component={GroomerOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
+        <SecureRoute path="/addPet" component={AddPetForm} />
+        <SecureRoute path="/updatePet/:name/:id" component={UpdatePetForm} />
       </Switch>
     </Security>
   );
