@@ -3,6 +3,9 @@ import {
   FETCH_FAILURE,
   USER_FETCH_SUCCESS,
   HANDLE_UPDATE_USER,
+  FETCH_USER_BUSINESSES,
+  CREATE_USER_BUSINESS,
+  HANDLE_UPDATE_BUSINESS,
   FETCH_USER_PETS,
   ADD_PET_SUCCESS,
 } from '../actions';
@@ -13,6 +16,7 @@ export const initialState = {
   userInfo: '',
   authState: '',
   loggedInUserData: '',
+  loggedInUsersBusinesses: '',
   loggedInUsersPets: '',
 };
 
@@ -41,6 +45,25 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loggedInUserData: action.payload,
       };
+
+    case CREATE_USER_BUSINESS:
+      return {
+        ...state,
+        loggedInUsersBusinesses: action.payload,
+      };
+
+    case FETCH_USER_BUSINESSES:
+      return {
+        ...state,
+        loggedInUsersBusinesses: action.payload,
+      };
+
+    case HANDLE_UPDATE_BUSINESS:
+      return {
+        ...state,
+        loggedInUsersBusinesses: action.payload,
+      };
+
     case FETCH_USER_PETS:
       return {
         ...state,

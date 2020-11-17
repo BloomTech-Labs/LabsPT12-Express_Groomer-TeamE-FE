@@ -24,6 +24,7 @@ import { LoginPage } from './components/pages/Login';
 import { LoadingComponent } from './components/common';
 import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingContainer.js';
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
+import GroomerOnBoardingForm from './components/pages/userOnBoarding/GroomerOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
 
 const AppWithRouter = withRouter(App);
@@ -68,6 +69,10 @@ function App() {
         <SecureRoute
           path="/onboardingClient"
           component={ClientOnBoardingForm}
+        />
+        <SecureRoute
+          path="/onboardingGroomer/:id"
+          component={GroomerOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
       </Switch>
