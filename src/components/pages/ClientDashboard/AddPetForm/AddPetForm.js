@@ -38,7 +38,7 @@ const AddPetForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     props.addPet(petState, authState);
-    history.push('/petPortal');
+    history.push('/');
   };
 
   const handleCancel = e => {
