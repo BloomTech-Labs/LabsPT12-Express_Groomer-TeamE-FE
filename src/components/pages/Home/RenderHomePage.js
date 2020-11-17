@@ -9,12 +9,11 @@ import GroomerDashboard from '../GroomerDashoard/GroomerDashboard';
 
 function RenderHomePage(props) {
   const { userInfo, authState } = props;
-
   let history = useHistory();
 
   useEffect(() => {
     props.fetchLoggedInUser(userInfo, authState);
-  }, [authState, userInfo, props]);
+  }, [authState, userInfo]);
 
   return (
     <div>
