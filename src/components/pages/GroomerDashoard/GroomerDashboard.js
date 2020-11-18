@@ -9,7 +9,18 @@ import suitcase from '../../../assets/suitcase.png';
 import view from '../../../assets/eye.png';
 
 const GroomerDashboard = () => {
+
+
   let history = useHistory();
+  let key = 0;
+  let id = 0;
+
+  const handleClick = clickType => {
+    if (clickType === 'viewProfile') {
+      history.push('/groomerProfile');
+    }
+  };
+
 
   const handleLogOut = () => {
     window.localStorage.clear(
@@ -20,6 +31,7 @@ const GroomerDashboard = () => {
     history.push('/login');
   };
 
+
   return (
     <div>
       <div className="clientDashContainer">
@@ -27,7 +39,10 @@ const GroomerDashboard = () => {
           <h1>Groomer Dashboard</h1>
 
           <div className="groomerIcons">
-            <div className="viewBusinessPage">
+            <div
+              className="viewBusinessPage"
+              onClick={() => handleClick('viewProfile')}
+            >
               <img
                 className="eye"
                 src={view}

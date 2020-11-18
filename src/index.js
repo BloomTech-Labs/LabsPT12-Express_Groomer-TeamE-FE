@@ -26,6 +26,9 @@ import OnBoardingContainer from './components/pages/userOnBoarding/OnBoardingCon
 import ClientOnBoardingForm from './components/pages/userOnBoarding/ClientOnBoardingForm.js';
 import GroomerOnBoardingForm from './components/pages/userOnBoarding/GroomerOnBoardingForm.js';
 import ManagePetContainer from './components/pages/ClientDashboard/ManagePet/ManagePetContainer';
+
+import GroomerProfile from './components/pages/GroomerDashoard/GroomerProfile/GroomerProfile';
+
 import AddPetForm from './components/pages/ClientDashboard/AddPetForm/AddPetForm';
 import UpdatePetForm from './components/pages/ClientDashboard/UpdatePetForm/UpdatePetForm';
 
@@ -77,8 +80,11 @@ function App() {
           component={GroomerOnBoardingForm}
         />
         <SecureRoute path="/PetPortal" component={ManagePetContainer} />
+        <SecureRoute path="/groomerProfile" component={GroomerProfile} />
+
         <SecureRoute path="/addPet" component={AddPetForm} />
         <SecureRoute path="/updatePet/:name/:id" component={UpdatePetForm} />
+
       </Switch>
     </Security>
   );
