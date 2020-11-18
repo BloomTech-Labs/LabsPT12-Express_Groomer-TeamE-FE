@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import { updateUser, fetchLoggedInUser } from '../../../state/actions/index';
+import './ClientOnBoardingForm.css';
 
 const ClientOnBoardingForm = props => {
   const { authState, authService } = useOktaAuth();
@@ -48,11 +49,16 @@ const ClientOnBoardingForm = props => {
     return history.push('/');
   };
 
+  const handleSkip = e => {
+    e.preventDefault();
+    history.push('/');
+  };
+
   return (
-    <div>
+    <div className="client-form">
       <h1>CLIENT HEY</h1>
       <h2>Please fill out other additional information</h2>
-      <div>
+      <div className="client-input">
         <form onSubmit={handleSubmit}>
           <input
             type="string"
@@ -61,7 +67,6 @@ const ClientOnBoardingForm = props => {
             value={data.bannerUrl}
             onChange={handleChange}
           />
-
           <br />
           <br />
           <input
@@ -76,6 +81,9 @@ const ClientOnBoardingForm = props => {
           <br />
           <button type="submit" onSubmit={handleSubmit}>
             Submit
+          </button>
+          <button type="submit" onSubmit={handleSkip}>
+            Skip
           </button>
         </form>
       </div>
