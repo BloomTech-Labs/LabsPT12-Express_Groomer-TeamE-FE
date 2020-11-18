@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import {
+  updateUser,
+  fetchLoggedInUser,
+  createBusiness,
+} from '../../../state/actions';
 import { useOktaAuth } from '@okta/okta-react';
-import { updateUser, fetchLoggedInUser } from '../../../state/actions';
+
 
 const OnBoardingContainer = props => {
   const { authState, authService } = useOktaAuth();
@@ -37,11 +42,23 @@ const OnBoardingContainer = props => {
         ...props.loggedInUserData,
         role: role.role,
       };
+
+      const businessData = {
+        user_id: props.loggedInUserData.id,
+        name: '',
+        banner_photo: '',
+        address: '',
+        ratings: '',
+        description: '',
+        phone: '',
+        availability: '',
+      };
       props.updateUser(updatedUserProfile, authState);
       if (role.role === 'client') {
         return history.push('/onboardingClient');
       } else if (role.role === 'groomer') {
-        return history.push('/onboardingGroomer');
+        props.createBusiness(businessData, authState);
+        return history.push(`/onboardingGroomer/${props.loggedInUserData.id}`);
       }
     }
     const updatedUserProfile = {
@@ -81,10 +98,12 @@ const mapStateToProps = state => {
   return {
     handle_role: state.handle_role,
     loggedInUserData: state.loggedInUserData,
+    loggedInUserBusinesses: state.loggedInUserBusinesses,
   };
 };
 
 export default connect(mapStateToProps, {
   updateUser,
   fetchLoggedInUser,
+  createBusiness,
 })(OnBoardingContainer);
