@@ -19,6 +19,12 @@ export const DELETE_PET_SUCCESS = 'DELETE_PET_SUCCESS';
 // fetch pet by petId
 export const FIND_PET_BYID = 'FIND_PET_BYID';
 
+// LoggedInUsersBusinesses: get all business owned by the loggedInUser
+export const FETCH_USER_BUSINESSES = 'FETCH_USER_BUSINESSES';
+export const CREATE_USER_BUSINESS = 'CREATE_USER_BUSINESS';
+
+export const HANDLE_UPDATE_BUSINESS = 'HANDLE_UPDATE_BUSINESS';
+
 // LoggedInUsersPets: gets all the pets owned by the loggedInUser
 export const FETCH_USER_PETS = 'FETCH_USER_PETS';
 
@@ -53,7 +59,48 @@ export const updateUser = (updatedUserProfile, authState) => dispatch => {
     });
 };
 
+export const createBusiness = (businessData, authState) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .post('/business', businessData)
+    .then(res => {
+      dispatch({ type: CREATE_USER_BUSINESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};
+
+export const getBusinessesByUserId = (id, authState) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .get(`/business/${id}`)
+    .then(res => {
+      dispatch({ type: FETCH_USER_BUSINESSES, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};
+
+export const updateBusiness = (
+  id,
+  updatedGroomerProfile,
+  authState
+) => dispatch => {
+  dispatch({ type: FETCH_START });
+  axiosWithAuth(authState)
+    .put(`/business/${id}`, updatedGroomerProfile)
+    .then(res => {
+      dispatch({ type: HANDLE_UPDATE_BUSINESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_FAILURE, payload: err });
+    });
+};
+
 export const getPetsByUserId = (user, authState) => dispatch => {
+
   dispatch({ type: FETCH_START });
   axiosWithAuth(authState)
     .get(`/profiles/${user.id}/pets`)
