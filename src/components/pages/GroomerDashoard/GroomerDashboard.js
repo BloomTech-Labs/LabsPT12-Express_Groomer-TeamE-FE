@@ -10,6 +10,7 @@ import view from '../../../assets/eye.png';
 
 const GroomerDashboard = () => {
 
+
   let history = useHistory();
   let key = 0;
   let id = 0;
@@ -18,6 +19,16 @@ const GroomerDashboard = () => {
     if (clickType === 'viewProfile') {
       history.push('/groomerProfile');
     }
+  };
+
+
+  const handleLogOut = () => {
+    window.localStorage.clear(
+      'okta-pkce-storage',
+      'okta-cache-storage',
+      'okta-token-storage'
+    );
+    history.push('/login');
   };
 
 
@@ -58,6 +69,9 @@ const GroomerDashboard = () => {
             alt="Icon of groomer appointments"
           />
           <h2>Upcoming Appointments</h2>
+          <p className="Logout" onClick={handleLogOut}>
+            Log Out
+          </p>
         </div>
       </div>
     </div>

@@ -2,10 +2,26 @@
   margin: auto;
   margin: 0rem 2rem 0rem 2rem;
 }
+.clientDashContainer p {
+  font-size: 1rem;
+  color: #90e0ef;
+  text-decoration: underline;
+  transition: all 0.1s ease-in-out;
+  width: 5%;
+}
+.clientDashContainer p:hover {
+  font-size: 1rem;
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+  transition-timing-function: ease-in;
+  transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: translateY(-3px);
+}
 .clientHeader {
-  margin-left: 5rem;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .cardContainer {
   display: flex;

@@ -28,11 +28,23 @@ const ClientDashboard = () => {
     }
   };
 
+  const handleLogOut = () => {
+    window.localStorage.clear(
+      'okta-pkce-storage',
+      'okta-cache-storage',
+      'okta-token-storage'
+    );
+    history.push('/login');
+  };
+
   return (
     <div className="clientDashContainer">
       <div className="clientHeader">
         <img className="logo" src={logo} alt="Express Groomer Logo." />
       </div>
+      <p className="Logout" onClick={handleLogOut}>
+        Log Out
+      </p>
       <div className="cardContainer">
         {icons.map(icon => {
           return (
