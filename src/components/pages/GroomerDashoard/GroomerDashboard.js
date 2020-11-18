@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './GroomerDashboard.css';
 
 // Icons
@@ -9,7 +9,16 @@ import suitcase from '../../../assets/suitcase.png';
 import view from '../../../assets/eye.png';
 
 const GroomerDashboard = () => {
-  // let history = useHistory();
+  let history = useHistory();
+
+  const handleLogOut = () => {
+    window.localStorage.clear(
+      'okta-pkce-storage',
+      'okta-cache-storage',
+      'okta-token-storage'
+    );
+    history.push('/login');
+  };
 
   return (
     <div>
@@ -45,6 +54,9 @@ const GroomerDashboard = () => {
             alt="Icon of groomer appointments"
           />
           <h2>Upcoming Appointments</h2>
+          <p className="Logout" onClick={handleLogOut}>
+            Log Out
+          </p>
         </div>
       </div>
     </div>
